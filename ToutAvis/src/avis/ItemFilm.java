@@ -18,15 +18,6 @@ public class ItemFilm extends Item {
 	}
 
 	/**
-	 * Setter of the property <tt>duree</tt>
-	 * @param duree  The duree to set.
-	 * @uml.property  name="duree"
-	 */
-	public void setDuree(int duree) {
-		this.duree = duree;
-	}
-
-	/**
 	 * @uml.property  name="genre"
 	 */
 	private String genre;
@@ -38,15 +29,6 @@ public class ItemFilm extends Item {
 	 */
 	public String getGenre() {
 		return genre;
-	}
-
-	/**
-	 * Setter of the property <tt>genre</tt>
-	 * @param genre  The genre to set.
-	 * @uml.property  name="genre"
-	 */
-	public void setGenre(String genre) {
-		this.genre = genre;
 	}
 
 	/**
@@ -64,15 +46,6 @@ public class ItemFilm extends Item {
 	}
 
 	/**
-	 * Setter of the property <tt>realisateur</tt>
-	 * @param realisateur  The realisateur to set.
-	 * @uml.property  name="realisateur"
-	 */
-	public void setRealisateur(String realisateur) {
-		this.realisateur = realisateur;
-	}
-
-	/**
 	 * @uml.property  name="scenariste"
 	 */
 	private String scenariste;
@@ -84,15 +57,6 @@ public class ItemFilm extends Item {
 	 */
 	public String getScenariste() {
 		return scenariste;
-	}
-
-	/**
-	 * Setter of the property <tt>scenariste</tt>
-	 * @param scenariste  The scenariste to set.
-	 * @uml.property  name="scenariste"
-	 */
-	public void setScenariste(String scenariste) {
-		this.scenariste = scenariste;
 	}
 
 	/**
@@ -109,13 +73,17 @@ public class ItemFilm extends Item {
 		return titre;
 	}
 
-	/**
-	 * Setter of the property <tt>titre</tt>
-	 * @param titre  The titre to set.
-	 * @uml.property  name="titre"
-	 */
-	public void setTitre(String titre) {
-		this.titre = titre;
+	public static boolean testBadEntry(String pseudo, String password, String titre, String genre, String realisateur, String scenariste, int duree){
+		if(pseudo == null) return true;
+		if(password == null) return true;
+		if(titre == null) return true;
+		if(genre == null) return true;
+		if(realisateur == null) return true;
+		if(scenariste == null) return true;
+		if(pseudo.trim().length() < 1) return true;
+		if(password.trim().length() < 4) return true;
+		if(titre.length() < 1) return true;
+		if(duree < 1) return true;
+		return false;
 	}
-
-}
+}	

@@ -45,23 +45,21 @@ import java.util.Collection;
 public class SocialNetwork {
 
 
-	/**
-	 * constructeur de <i>SocialNetwok</i> 
-	 * 
-	 */
 
 	/**
 	 * @uml.property  name="members"
 	 * @uml.associationEnd  multiplicity="(0 -1)" inverse="socialNetwork:avis.Member"
 	 */
-	private Collection<Member> members;
+	private LinkedList<Member> members;
 	/**
 	 * @uml.property  name="items"
 	 * @uml.associationEnd  multiplicity="(0 -1)" inverse="socialNetwork:avis.Item"
 	 */
-	private Collection<Item> items;
+	private LinkedList<Item> items;
 	
 	public SocialNetwork() {
+		members = new LinkedList<Member>();
+		items = new LinkedList<Item>();
 	}
 
 	/**
@@ -120,27 +118,14 @@ public class SocialNetwork {
 	 * 
 	 */
 	public void addMember(String pseudo, String password, String profil) throws BadEntry, MemberAlreadyExists  {
-
-		//Tests BadEntry
-		if(pseudo == null) throw new BadEntry("Pseudo non instancié");
-		boolean pseudoOK = false;
-		for(int i = 0;i<pseudo.length();i++){
-			if(pseudo.charAt(i)!=' '){ 
-				pseudoOK = true;
-				break;	
-			}	
-		}
-		if(!pseudoOK) throw new BadEntry("Pseudo incorrect");
-		if(password == null) throw new BadEntry("Mot de passe non instancié");
-		String pwd = password.trim();
-		if(pwd.length() < 4) throw new BadEntry("Mot de passe incorrect");
-		if(profil == null) throw new BadEntry("Profil non instancié");
+		//Test BadEntry
+		if(Member.testBadEntry(pseudo, password, profil)) throw new BadEntry("Saisie incorrecte");
 		//Test MemberAlreadyExists
 		for(Member m : members){
-			if(m.getPseudo().trim().toLowerCase().equals(pwd.toLowerCase())) throw new MemberAlreadyExists();	
+			if(m.getPseudo().trim().toLowerCase().equals(pseudo.trim().toLowerCase())) throw new MemberAlreadyExists();	
 		}
 		Member m1 = new Member(pseudo,password,profil);
-		
+		members.add(m1);
 	}		
 
 		
@@ -171,7 +156,25 @@ public class SocialNetwork {
 	 * 
 	 */
 	public void addItemFilm(String pseudo, String password, String titre, String genre, String realisateur, String scenariste, int duree) throws BadEntry, NotMember, ItemFilmAlreadyExists {
-
+		//Tests BadEntry
+		if(ItemFilm.testBadEntry(pseudo, password, titre, genre, realisateur, scenariste, duree)) throw new BadEntry("Saisie incorrecte");
+		//Tests NotMember
+		boolean membreOK = false;
+		for(Member m : members){
+			if(m.getPseudo().equals(pseudo))
+				membreOK = true;
+		}
+		if(membreOK == false) throw new NotMember("Login inexistant");
+		for(Member m : members){
+			if(m.getPseudo().equals(pseudo))
+				if(m.isPassword(password)) throw new NotMember("Password incorrect");
+		}
+		//Test ItemFilmAlreadyExists
+		for(Item i : items){
+			if(i instanceof ItemFilm){
+				if(((ItemFilm) i).getTitre().trim().toLowerCase().equals(titre.trim().toLowerCase())) throw new ItemFilmAlreadyExists();
+			}
+		}
 	}
 
 	/**
@@ -199,7 +202,25 @@ public class SocialNetwork {
 	 * 
 	 */
 	public void addItemBook(String pseudo, String password, String titre, String genre, String auteur, int nbPages) throws  BadEntry, NotMember, ItemBookAlreadyExists{
-
+		//Tests BadEntry
+		if(ItemBook.testBadEntry(pseudo, password, titre, genre, auteur, nbPages)) throw new BadEntry("Saisie incorrecte");
+		//Tests NotMember
+		boolean membreOK = false;
+		for(Member m : members){
+			if(m.getPseudo().equals(pseudo))
+				membreOK = true;
+			}
+		if(membreOK == false) throw new NotMember("Login inexistant");
+			for(Member m : members){
+				if(m.getPseudo().equals(pseudo))
+					if(m.isPassword(password)) throw new NotMember("Password incorrect");
+			}
+			//Test ItemFilmAlreadyExists
+			for(Item i : items){
+				if(i instanceof ItemBook){
+					if(((ItemBook) i).getTitre().trim().toLowerCase().equals(titre)) throw new ItemBookAlreadyExists();
+				}
+			}
 	}
 
 	/**

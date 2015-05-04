@@ -18,15 +18,6 @@ public class ItemBook extends Item {
 	}
 
 	/**
-	 * Setter of the property <tt>auteur</tt>
-	 * @param auteur  The auteur to set.
-	 * @uml.property  name="auteur"
-	 */
-	public void setAuteur(String auteur) {
-		this.auteur = auteur;
-	}
-
-	/**
 	 * @uml.property  name="genre"
 	 */
 	private String genre;
@@ -38,15 +29,6 @@ public class ItemBook extends Item {
 	 */
 	public String getGenre() {
 		return genre;
-	}
-
-	/**
-	 * Setter of the property <tt>genre</tt>
-	 * @param genre  The genre to set.
-	 * @uml.property  name="genre"
-	 */
-	public void setGenre(String genre) {
-		this.genre = genre;
 	}
 
 	/**
@@ -64,15 +46,6 @@ public class ItemBook extends Item {
 	}
 
 	/**
-	 * Setter of the property <tt>nbPages</tt>
-	 * @param nbPages  The nbPages to set.
-	 * @uml.property  name="nbPages"
-	 */
-	public void setNbPages(int nbPages) {
-		this.nbPages = nbPages;
-	}
-
-	/**
 	 * @uml.property  name="titre"
 	 */
 	private String titre;
@@ -85,14 +58,19 @@ public class ItemBook extends Item {
 	public String getTitre() {
 		return titre;
 	}
-
-	/**
-	 * Setter of the property <tt>titre</tt>
-	 * @param titre  The titre to set.
-	 * @uml.property  name="titre"
-	 */
-	public void setTitre(String titre) {
-		this.titre = titre;
+	
+	public static boolean testBadEntry(String pseudo, String password, String titre, String genre, String auteur, int nbPages){
+		if(pseudo == null) return true;
+		if(password == null) return true;
+		if(titre == null) return true;
+		if(genre == null) return true;
+		if(auteur == null) return true;
+		if(pseudo.trim().length() < 1) return true;
+		if(password.trim().length() < 4) return true;
+		if(titre.length() < 1) return true;
+		if(nbPages < 0) return true;
+		return false;
 	}
+
 
 }
