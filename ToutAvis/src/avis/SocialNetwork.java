@@ -120,20 +120,14 @@ public class SocialNetwork {
 	 * 
 	 */
 	public void addMember(String pseudo, String password, String profil) throws BadEntry, MemberAlreadyExists  {
+
+		//test pseudo	
+
 		//Tests BadEntry
-		if(pseudo == null) throw new BadEntry("Pseudo non instancié");
-		boolean pseudoOK = false;
-		for(int i = 0;i<pseudo.length();i++){
-			if(pseudo.charAt(i)!=' '){ 
-				pseudoOK = true;
-				break;
-			}
-		}
-		if(!pseudoOK) throw new BadEntry("Pseudo incorrect");
-		if(password == null) throw new BadEntry("Mot de passe non instancié");
+		if(password == null) throw new BadEntry("Mot de passe non instanciÔøΩ");
 		String pwd = password.trim();
 		if(pwd.length() < 4) throw new BadEntry("Mot de passe incorrect");
-		if(profil == null) throw new BadEntry("Profil non instancié");
+		if(profil == null) throw new BadEntry("Profil non instanciÔøΩ");
 		//Test MemberAlreadyExists
 		for(Member m : members){
 			if(m.getPseudo().trim().toLowerCase().equals(pwd.toLowerCase())) throw new MemberAlreadyExists();
@@ -283,7 +277,4 @@ public class SocialNetwork {
 	public String toString() {
 		return "";
 	}
-
-
-
 }
