@@ -121,20 +121,29 @@ public class SocialNetwork {
 	 */
 	public void addMember(String pseudo, String password, String profil) throws BadEntry, MemberAlreadyExists  {
 
-		//test pseudo	
-
 		//Tests BadEntry
-		if(password == null) throw new BadEntry("Mot de passe non instanciï¿½");
+		if(pseudo == null) throw new BadEntry("Pseudo non instanciŽ");
+		boolean pseudoOK = false;
+		for(int i = 0;i<pseudo.length();i++){
+			if(pseudo.charAt(i)!=' '){ 
+				pseudoOK = true;
+				break;	
+			}	
+		}
+		if(!pseudoOK) throw new BadEntry("Pseudo incorrect");
+		if(password == null) throw new BadEntry("Mot de passe non instanciŽ");
 		String pwd = password.trim();
 		if(pwd.length() < 4) throw new BadEntry("Mot de passe incorrect");
-		if(profil == null) throw new BadEntry("Profil non instanciï¿½");
+		if(profil == null) throw new BadEntry("Profil non instanciŽ");
 		//Test MemberAlreadyExists
 		for(Member m : members){
-			if(m.getPseudo().trim().toLowerCase().equals(pwd.toLowerCase())) throw new MemberAlreadyExists();
+			if(m.getPseudo().trim().toLowerCase().equals(pwd.toLowerCase())) throw new MemberAlreadyExists();	
 		}
 		Member m1 = new Member(pseudo,password,profil);
-	}
+		
+	}		
 
+		
 
 	/**
 	 * Ajouter un nouvel item de film au <i>SocialNetwork</i> 
