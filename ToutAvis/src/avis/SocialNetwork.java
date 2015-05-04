@@ -13,10 +13,8 @@ import exception.NotMember;
 import java.util.Collection;
 
 /** 
- * @author A. Beugnard, 
- * @author G. Ouvradou
- * @author B. Prou
- * @date f√©vrier - mars 2011
+ * @author J. Quigley Y. Maliszewski
+ * @date mai 2015
  * @version V0.6
  */
 
@@ -52,6 +50,17 @@ public class SocialNetwork {
 	 * 
 	 */
 
+	/**
+	 * @uml.property  name="members"
+	 * @uml.associationEnd  multiplicity="(0 -1)" inverse="socialNetwork:avis.Member"
+	 */
+	private Collection<Member> members;
+	/**
+	 * @uml.property  name="items"
+	 * @uml.associationEnd  multiplicity="(0 -1)" inverse="socialNetwork:avis.Item"
+	 */
+	private Collection<Item> items;
+	
 	public SocialNetwork() {
 	}
 
@@ -61,8 +70,7 @@ public class SocialNetwork {
 	 * @return le nombre de membres
 	 */
 	public int nbMembers() {
-		
-		return 0;
+		return members.size();
 	}
 
 	/**
@@ -71,7 +79,12 @@ public class SocialNetwork {
 	 * @return le nombre de films
 	 */
 	public int nbFilms() {
-		return 0;
+		int n = 0;
+		for (Item i : items){
+			if(i instanceof ItemFilm)
+				n++;
+		}
+		return n;
 	}
 
 	/**
@@ -80,7 +93,12 @@ public class SocialNetwork {
 	 * @return le nombre de livres
 	 */
 	public int nbBooks() {
-		return 0;
+		int n = 0;
+		for (Item i : items){
+			if(i instanceof ItemBook)
+				n++;
+		}
+		return n;
 	}
 
 
@@ -102,7 +120,16 @@ public class SocialNetwork {
 	 * 
 	 */
 	public void addMember(String pseudo, String password, String profil) throws BadEntry, MemberAlreadyExists  {
-
+		//Tests BadEntry
+		if(password == null) throw new BadEntry("Mot de passe non instancié");
+		String pwd = password.trim();
+		if(pwd.length() < 4) throw new BadEntry("Mot de passe incorrect");
+		if(profil == null) throw new BadEntry("Profil non instancié");
+		//Test MemberAlreadyExists
+		for(Member m : members){
+			if(m.getPseudo().trim().toLowerCase().equals(pwd.toLowerCase())) throw new MemberAlreadyExists();
+		}
+		Member m1 = new Member(pseudo,password,profil);
 	}
 
 
@@ -247,20 +274,6 @@ public class SocialNetwork {
 	public String toString() {
 		return "";
 	}
-
-
-	/**
-	 * @uml.property  name="members"
-	 * @uml.associationEnd  multiplicity="(0 -1)" inverse="socialNetwork:avis.Member"
-	 */
-	private Collection<Member> members;
-	/**
-	 * @uml.property  name="items"
-	 * @uml.associationEnd  multiplicity="(0 -1)" inverse="socialNetwork:avis.Item"
-	 */
-	private Collection<Item> items;
-
-
 
 
 
