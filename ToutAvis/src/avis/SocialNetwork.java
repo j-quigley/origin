@@ -10,6 +10,7 @@ import exception.ItemBookAlreadyExists;
 import exception.MemberAlreadyExists;
 import exception.NotItem;
 import exception.NotMember;
+import java.util.Collection;
 
 /** 
  * @author A. Beugnard, 
@@ -60,6 +61,7 @@ public class SocialNetwork {
 	 * @return le nombre de membres
 	 */
 	public int nbMembers() {
+		
 		return 0;
 	}
 
@@ -245,6 +247,18 @@ public class SocialNetwork {
 	public String toString() {
 		return "";
 	}
+
+
+	/**
+	 * @uml.property  name="members"
+	 * @uml.associationEnd  multiplicity="(0 -1)" inverse="socialNetwork:avis.Member"
+	 */
+	private Collection<Member> members;
+	/**
+	 * @uml.property  name="items"
+	 * @uml.associationEnd  multiplicity="(0 -1)" inverse="socialNetwork:avis.Item"
+	 */
+	private Collection<Item> items;
 
 
 

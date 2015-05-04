@@ -71,7 +71,7 @@ public class TestsReviewItemFilm {
 		}
 	}
 	
-	public static int reviewItemNoItem(SocialNetwork sn, String pseudo, String pwd, String titre, float note, String comment,String idTest, String messErreur){
+	public static int reviewItemNotItem(SocialNetwork sn, String pseudo, String pwd, String titre, float note, String comment,String idTest, String messErreur){
 		try {
 			sn.reviewItemFilm(pseudo, pwd, titre, note, comment);
 			System.out.println ("Test " + idTest + " : " + messErreur);
