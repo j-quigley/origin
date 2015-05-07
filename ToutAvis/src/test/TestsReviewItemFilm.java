@@ -19,21 +19,26 @@ import exception.NotMember;
 
 public class TestsReviewItemFilm {
 
+	static class Moyenne {
+		public float value;
+	}
 
-
-	public static int reviewItemFilmBadEntryTest (SocialNetwork sn, String pseudo, String pwd, String titre, float note, String comment,String idTest, String messErreur){
+	public static int reviewItemFilmBadEntryTest (SocialNetwork sn, Moyenne moyenne, String pseudo, String pwd, String titre, float note, String comment,String idTest, String messErreur){
 		// v�rifie que l'ajout d'un film est refus�e (lev�e de l'exception BadEntry et pas de modification de sn)
 		// ne fait rien si c'est le cas
 		// sinon, affiche le message d'erreur pass� en param�tre
-				
+		float moy = moyenne.value;		
 		try {
 			sn.reviewItemFilm(pseudo, pwd, titre, note, comment);
 			System.out.println ("Test " + idTest + " : " + messErreur);
 			return 1;
 		}
 		catch (BadEntry e) {
-				System.out.println("Test " + idTest + " : l'exception BadEntry a bien été levée ");
+			if (moyenne.value != moy) {
+				System.out.println("Test " + idTest + " : l'exception BadEntry a bien ̩t̩ lev̩e mais la moyenne a ̩t̩ modifi̩");
 				return 1;
+			}
+			return 0;
 		}
 		catch (Exception e) {
 			System.out.println ("Test " + idTest + " : exception non prévue. " + e); 
@@ -42,9 +47,16 @@ public class TestsReviewItemFilm {
 		}
 	}
 
-	public static int reviewItemFilmOKTest (SocialNetwork sn, String pseudo, String pwd, String titre, float note, String comment,String idTest){
+
+
+	public static int reviewItemFilmOKTest (SocialNetwork sn, Moyenne moyenne, String pseudo, String pwd, String titre, float note, String comment,String idTest){
+		float moy = moyenne.value;	
 		try{
 			sn.reviewItemFilm(pseudo, pwd, titre, note, comment);
+			if (moyenne.value != moy) {
+				System.out.println("Test " + idTest + " : l'exception BadEntry a bien ̩t̩ lev̩e mais la moyenne n'a pas ̩t̩ modifi̩");
+				return 1;
+			}
 			return 0;
 		}
 		catch (Exception e) {
@@ -54,15 +66,19 @@ public class TestsReviewItemFilm {
 		}
 	}
 
-	public static int reviewItemNotMemberTest(SocialNetwork sn, String pseudo, String pwd, String titre, float note, String comment,String idTest, String messErreur){
+	public static int reviewItemNotMemberTest(SocialNetwork sn, Moyenne moyenne, String pseudo, String pwd, String titre, float note, String comment,String idTest, String messErreur){
+		float moy = moyenne.value;
 		try {
 			sn.reviewItemFilm(pseudo, pwd, titre, note, comment);
 			System.out.println ("Test " + idTest + " : " + messErreur);
-			return 0;
+			return 1;
 		}
 		catch (NotMember e) {
-			System.out.println ("Test " + idTest + " le pseudo est inexistant ou password et pseudo incorrects.");
-			return 1;
+			if (moyenne.value != moy) {
+				System.out.println("Test " + idTest + " : l'exception NotMember a bien ̩t̩ lev̩e mais la moyenne a ̩t̩ modifi̩");
+				return 1;
+			}
+			return 0;
 		}
 		catch (Exception e) {
 			System.out.println ("Test " + idTest + " : exception non prévue. " + e); 
@@ -70,16 +86,20 @@ public class TestsReviewItemFilm {
 			return 1;
 		}
 	}
-	
-	public static int reviewItemNotItem(SocialNetwork sn, String pseudo, String pwd, String titre, float note, String comment,String idTest, String messErreur){
+
+	public static int reviewItemNotItemTest(SocialNetwork sn, Moyenne moyenne, String pseudo, String pwd, String titre, float note, String comment,String idTest, String messErreur){
+		float moy = moyenne.value;
 		try {
 			sn.reviewItemFilm(pseudo, pwd, titre, note, comment);
 			System.out.println ("Test " + idTest + " : " + messErreur);
-			return 0;
+			return 1;
 		}
 		catch (NotItem e) {
-			System.out.println ("Test " + idTest + " Le titre de film saisi n'existe pas");
-			return 1;
+			if (moyenne.value != moy) {
+				System.out.println("Test " + idTest + " : l'exception NotItem a bien ̩t̩ lev̩e mais la moyenne a ̩t̩ modifi̩");
+				return 1;
+			}
+			return 0;
 		}
 		catch (Exception e) {
 			System.out.println ("Test " + idTest + " : exception non prévue. " + e); 
@@ -95,60 +115,87 @@ public class TestsReviewItemFilm {
 
 		int nbTests = 0;
 		int nbErreurs = 0;
-		
-		System.out.println("Tests  ajouter des opinions au réseau social  ");
+
+		System.out.println("Tests  ajouter des avis au réseau social  ");
 
 		SocialNetwork sn = new SocialNetwork();
 
+		//instanciation de quatre membres
+
+		try {
+			sn.addMember("jacques", "aaaa", "Amateur");
+			sn.addMember("Jean-Mi", "bbbb", "Paysan");
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("Exception inattendue lev�e lors de l'utilisation de addMember");
+		}
 		
-		// <=> fiche numéro 1
+		//Ajout de deux livres
 		
+		try{
+			sn.addItemFilm("jacques", "aaaa", "La biere", "Policier","Jacouille", "Bruno",  350);
+			sn.addItemFilm("Jean-Mi", "bbbb", "Dirac en 0", "Com�die", "Nico", "Tanguy", 120);
+		}
+		catch(Exception e){
+			e.printStackTrace();
+			System.out.println("Exception inattendue lev�e lors de l'utilisation de addItem");
+		}
+
+		Moyenne moyenne = new Moyenne();
+		moyenne.value = 0.0f;
+		
+		// <=> fiche numéro 7
+
 
 		// tentative d'ajout de membres avec entrées "incorrectes"
 
 		nbTests++;
-		nbErreurs += reviewItemFilmBadEntryTest ( sn, null, "qsdfgh","tttttt" ,4.0f," Pas terrible ce truc", "1.1", "L'ajout d'une opinion avec un pseudo non nstancié est accepté");
+		nbErreurs += reviewItemFilmBadEntryTest ( sn, moyenne, null, "aaaa","La biere" ,4.0f," Pas terrible ce truc", "7.1", "L'ajout d'une opinion avec un pseudo non nstancié est accepté");
 		nbTests++;
-		nbErreurs += reviewItemFilmBadEntryTest ( sn, " ", "qsdfgh", "aaaaaa",0.6f,"Oh no","1.2", "L'ajout d'une opinion ne contenant pas un caracteres, autre que des espaces, est accepté");
+		nbErreurs += reviewItemFilmBadEntryTest ( sn,moyenne, " ", "aaaa", "La biere",0.6f,"Oh no","7.2", "L'ajout d'une opinion ne contenant pas un caracteres, autre que des espaces, est accepté");
 		nbTests++;
-		nbErreurs += reviewItemFilmBadEntryTest ( sn, "B",null, "hhhhhhh",0.0f,"", "1.3", "L'ajout d'une opinion dont le password n'est pas instancié est accepté");
+		nbErreurs += reviewItemFilmBadEntryTest ( sn, moyenne, "jacques", null, "La biere",0.0f,"", "7.3", "L'ajout d'une opinion dont le password n'est pas instancié est accepté");
 		nbTests++;
-		nbErreurs += reviewItemFilmBadEntryTest ( sn, "B"," qqf", null,0.0f,"Oh no", "1.4","L'ajout d'un membre dont le password ne contient pas au moins 4 caracteres, autre que des espaces de début ou de fin, est accepté");
+		nbErreurs += reviewItemFilmBadEntryTest ( sn, moyenne, "jacques"," aaa  ", null,0.0f,"Oh no", "7.4","L'ajout d'un membre dont le password ne contient pas au moins 4 caracteres, autre que des espaces de début ou de fin, est accepté");
 		nbTests++;
-		nbErreurs += reviewItemFilmBadEntryTest ( sn, "BBBB", "bbbb", null,0.0f,"Oh no", "1.5", "L'ajout d'une opinion dont le titre n'est pas instancié est accepté");
+		nbErreurs += reviewItemFilmBadEntryTest ( sn, moyenne, "jacques", "aaaa", null,0.0f,"Oh no", "7.5", "L'ajout d'une opinion dont le titre n'est pas instancié est accepté");
 		nbTests++;		
-		nbErreurs += reviewItemFilmBadEntryTest ( sn, "BBBB", "bbbb", " ",0.0f,"Oh no", "1.6", "L'ajout d'une opinion dont le titre ne contient que des espaces est accepté");
+		nbErreurs += reviewItemFilmBadEntryTest ( sn, moyenne, "jacques", "aaaa", " ",0.0f,"Oh no", "7.6", "L'ajout d'une opinion dont le titre ne contient que des espaces est accepté");
 		nbTests++;		
-		nbErreurs += reviewItemFilmBadEntryTest ( sn, "BBBB", "bbbb", "cccc ",-3.0f,"Oh no", "1.7", "L'ajout d'une opinion dont la note est negative est accepté");
+		nbErreurs += reviewItemFilmBadEntryTest ( sn, moyenne, "jacques", "aaaa", "La biere ",-3.0f,"Oh no", "7.7", "L'ajout d'une opinion dont la note est negative est accepté");
 		nbTests++;		
-		nbErreurs += reviewItemFilmBadEntryTest ( sn, "BBBB", "bbbb", "gggg ",7.0f,"Oh no", "1.8", "L'ajout d'une opinion dont la note est superieure a 5 est accepté");
-		nbTests++;		
-		nbErreurs += reviewItemFilmBadEntryTest ( sn, "BBBB", "bbbb", " gggg",0.0f,"Oh no", "1.6", null);
+		nbErreurs += reviewItemFilmBadEntryTest ( sn, moyenne, "jacques", "aaaa", "La biere ",7.0f,"Oh no", "7.8", "L'ajout d'une opinion dont la note est superieure a 5 est accepté");
 
 
-		// <=> fiche numéro 2
+		// <=> fiche numéro 8
 
 		// ajout de 3 opinions avec entrées "correctes"
 
 		nbTests++;
-		nbErreurs += reviewItemFilmOKTest (sn, "Paul", "paul","Zaza in wonderland",3.0f,"C'est quoi ce truc","2.1a");
+		nbErreurs += reviewItemFilmOKTest (sn, moyenne, "jacques", "aaaa","La biere",3.0f,"J'aime les binchs","8.1");
 		nbTests++;
-		nbErreurs += reviewItemFilmOKTest (sn, "Antoine", "antoine","Robin des Bois",1.0f,"Vraiment mauvais","2.1b");
+		nbErreurs += reviewItemFilmOKTest (sn, moyenne, "Jean-Mi", "bbbb","  La BIEre",1.0f,"Super film","8.2");
 		nbTests++;
-		nbErreurs += reviewItemFilmOKTest (sn, "Alice", "alice","Fifty shades of grey",4.5f,"Encore Merci","2.1c");
+		nbErreurs += reviewItemFilmOKTest (sn, moyenne, "jacques", "aaaa","la biere",4.5f,"Un incontournable","8.3");
+		nbTests++;
+		nbErreurs += reviewItemFilmOKTest (sn, moyenne, "Jean-Mi", "bbbb","Dirac en 0",2.5f,"Bof","8.4");
 
-		// tentative d'ajout d'opinion avec parametre couple login/password incohérent + nom de film inexistant
+		// tentative d'ajout d'opinion avec parametre couple login/password incohérent 
 
 		nbTests++;
-		nbErreurs += reviewItemNotMemberTest(sn, "JohnDoe", "alice","Fifty shades of grey",4.5f,"Encore Merci","2.2","L'ajout d'une opinion dont le pseudo est inexistant est accepté");
+		nbErreurs += reviewItemNotMemberTest(sn, moyenne, "xx-jacqueslebgdu29-xx", "aaaa","La biere",3.0f,"J'aime les binchs","8.5","L'ajout d'une opinion dont le pseudo est inexistant est accepté");
 		nbTests++;
-		nbErreurs += reviewItemNotMemberTest(sn, "Antoine", "alice","Fifty shades of grey",4.5f,"Encore Merci","2.3","L'ajout d'une opinion dont le couple pseudo/password est incohérent est accepté");
+		nbErreurs += reviewItemNotMemberTest(sn, moyenne, "Jean-Mi", "bbbazab","  La BIEre",1.0f,"Super film","8.6","L'ajout d'une opinion dont le couple pseudo/password est incohérent est accepté");
+		
+		// tentative d'ajout d'opinion avec titre de film inexistant
+		
 		nbTests++;
-		nbErreurs += reviewItemNotMemberTest(sn, "Antoine", "antoine","Robin Hood",1.0f,"Vraiment mauvais","2.4","L'ajout d'une opinion avec un titre de film inexistant est accepté");
-		nbTests++;
+		nbErreurs += reviewItemNotItemTest(sn, moyenne, "jacques", "aaaa","Le powerpc",3.0f,"J'aime les testarossas","8.7","L'ajout d'une opinion avec un titre de film inexistant est accepté");
+		
 
 
 		// ce n'est pas du test, mais cela peut "rassurer"...
+		nbTests++;
 		System.out.println(sn);
 
 		// bilan du test de addMember

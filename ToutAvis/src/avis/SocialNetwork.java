@@ -56,7 +56,7 @@ public class SocialNetwork {
 	 * @uml.associationEnd  multiplicity="(0 -1)" inverse="socialNetwork:avis.Item"
 	 */
 	private LinkedList<Item> items;
-	
+
 	public SocialNetwork() {
 		members = new LinkedList<Member>();
 		items = new LinkedList<Item>();
@@ -128,7 +128,7 @@ public class SocialNetwork {
 		members.add(m1);
 	}		
 
-		
+
 
 	/**
 	 * Ajouter un nouvel item de film au <i>SocialNetwork</i> 
@@ -167,11 +167,12 @@ public class SocialNetwork {
 			}
 		}
 		//test si le membre est présent dans la liste
-		if (m == null) throw new NotMember("Not member : Membre non présent"); 
+		if (m == null) throw new NotMember("Not member : Membre non présent");
+		//Test du password si le membre existe 
 		if(!m.isPassword(password)) throw new NotMember("Password erroné");
 		// si le membre est présent, on continue
 		else {
-		//Test ItemFilmAlreadyExists
+			//Test ItemFilmAlreadyExists
 			for(Item i : items){
 				if(i instanceof ItemFilm){
 					if(((ItemFilm) i).getTitre().trim().toLowerCase().equals(titre.trim().toLowerCase())) throw new ItemFilmAlreadyExists();
@@ -188,7 +189,7 @@ public class SocialNetwork {
 		}
 	}
 
-	
+
 	/**
 	 * Ajouter un nouvel item de livre au <i>SocialNetwork</i> 
 	 * 
@@ -215,36 +216,36 @@ public class SocialNetwork {
 	 */
 	public void addItemBook(String pseudo, String password, String titre, String genre, String auteur, int nbPages) throws  BadEntry, NotMember, ItemBookAlreadyExists{
 		//Tests BadEntry
-				if(ItemBook.testBadEntry(pseudo, password, titre, genre, auteur, nbPages)) throw new BadEntry("Saisie incorrecte");
-				//Tests NotMember
-				Member m = null;
-				for(Member membreTest : members ) {
-					//on teste si le membre existe
-					if (membreTest.getPseudo().trim().toLowerCase().equals(pseudo.trim().toLowerCase())) {
-						m = membreTest;
-					}
-				}
-				//test si le membre est présent dans la liste
-				if (m == null) throw new NotMember("Not member : Membre non présent"); 
-				if(!m.isPassword(password)) throw new NotMember("Password erroné");
-				// si le membre est présent, on continue
-				else {
-				//Test ItemFilmAlreadyExists
-					for(Item i : items){
-						if(i instanceof ItemBook){
-							if(((ItemBook) i).getTitre().trim().toLowerCase().equals(titre.trim().toLowerCase())) throw new ItemBookAlreadyExists();
-						}
-					}
-					Member author = null;
-					for(Member membreTest : members ) {
-						if (membreTest.getPseudo().trim().toLowerCase().equals(pseudo.trim().toLowerCase())) {
-							author = membreTest;
-						}
-					}
-					ItemBook livre = new ItemBook(author, titre, auteur, genre, nbPages);
-					items.add(livre);
+		if(ItemBook.testBadEntry(pseudo, password, titre, genre, auteur, nbPages)) throw new BadEntry("Saisie incorrecte");
+		//Tests NotMember
+		Member m = null;
+		for(Member membreTest : members ) {
+			//on teste si le membre existe
+			if (membreTest.getPseudo().trim().toLowerCase().equals(pseudo.trim().toLowerCase())) {
+				m = membreTest;
+			}
+		}
+		//test si le membre est présent dans la liste
+		if (m == null) throw new NotMember("Not member : Membre non présent"); 
+		if(!m.isPassword(password)) throw new NotMember("Password erroné");
+		// si le membre est présent, on continue
+		else {
+			//Test ItemFilmAlreadyExists
+			for(Item i : items){
+				if(i instanceof ItemBook){
+					if(((ItemBook) i).getTitre().trim().toLowerCase().equals(titre.trim().toLowerCase())) throw new ItemBookAlreadyExists();
 				}
 			}
+			Member author = null;
+			for(Member membreTest : members ) {
+				if (membreTest.getPseudo().trim().toLowerCase().equals(pseudo.trim().toLowerCase())) {
+					author = membreTest;
+				}
+			}
+			ItemBook livre = new ItemBook(author, titre, auteur, genre, nbPages);
+			items.add(livre);
+		}
+	}
 
 	/**
 	 * Consulter les items du <i>SocialNetwork</i> par nom
@@ -259,10 +260,25 @@ public class SocialNetwork {
 	 */
 	public LinkedList <String> consultItems(String nom) throws BadEntry {
 		LinkedList<String> result = new LinkedList<String>();
+		//Test BadEntry
+		if(nom.trim().length()<1) throw new BadEntry("Nom incorrect");
+		float note=0;
 		for(Item i : items){
 			if(i instanceof ItemFilm){
-				if(((ItemFilm) i).getTitre().trim().toLowerCase().equals(nom.trim().toLowerCase()))
-					result.add("Titre : "+((ItemFilm) i).getTitre() +" auteur : ");
+				if(((ItemFilm) i).getTitre().trim().toLowerCase().equals(nom.trim().toLowerCase())){
+					note = i.getMoyenne();
+					if(note>=0)
+						result.add("Film trouvé : Titre : "+((ItemFilm) i).getTitre()+" genre : "+((ItemFilm) i).getGenre()+" note : "+note);
+					else result.add("Film trouvé : Titre : "+((ItemFilm) i).getTitre()+" genre : "+((ItemFilm) i).getGenre());
+				}
+			}
+			if(i instanceof ItemBook){
+				if(((ItemBook) i).getTitre().trim().toLowerCase().equals(nom.trim().toLowerCase())){
+					note = i.getMoyenne();
+					if(note>=0)
+						result.add("Livre trouvé : Titre : "+((ItemBook) i).getTitre()+" genre : "+((ItemFilm) i).getGenre()+"note : "+note);
+					else result.add("Livre trouvé : Titre : "+((ItemBook) i).getTitre()+" genre : "+((ItemFilm) i).getGenre());
+				}
 			}
 		}
 		return result;
@@ -295,6 +311,32 @@ public class SocialNetwork {
 	 * @return la note moyenne des notes sur ce film  
 	 */
 	public float reviewItemFilm(String pseudo, String password, String titre, float note, String commentaire) throws BadEntry, NotMember, NotItem {
+		//Test BadEntry
+		if(Review.testBadEntry(pseudo, password, titre, note, commentaire)) throw new BadEntry("Paramètres incorrects");
+		//Tests NotMember
+		Member m = null;
+		for(Member membreTest : members ) {
+			//on teste si le membre existe
+			if (membreTest.getPseudo().trim().toLowerCase().equals(pseudo.trim().toLowerCase())) {
+				m = membreTest;
+			}
+		}
+		//test si le membre est présent dans la liste
+		if (m == null) throw new NotMember("Not member : Membre non présent"); 
+		if(!m.isPassword(password)) throw new NotMember("Password erroné");
+		//Test NotItem
+		Item j = null;
+		for(Item i : items){
+			if(i instanceof ItemFilm){
+				if(((ItemFilm) i).getTitre().trim().toLowerCase().equals(titre.trim().toLowerCase())){
+					j = i;
+				}
+			}
+		}
+		if(j==null) throw new NotItem("Pas d'item correspondant");
+		//Ajout du review
+		Review r = new Review(m, note, commentaire);
+		j.addReview(r);
 		return 0.0f;
 	}
 
@@ -337,4 +379,6 @@ public class SocialNetwork {
 	public String toString() {
 		return "";
 	}
+
+
 }

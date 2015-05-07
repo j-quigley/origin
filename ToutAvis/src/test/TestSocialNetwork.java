@@ -11,17 +11,7 @@ public class TestSocialNetwork {
 	      String nbErreurs = "" + 0;
 	      String [] resultats = new String[] {"0", "0"};
 	      
-	   // bilan du test de addMember
-	         System.out.println("TestsAddMember :   " + nbErreurs + 
-	                            " erreur(s) / " +  nbTests + " tests effectués");
-	      
-	      // ajouts au bilan en cours si le bilan est passé en paramètre
-	         if ((args != null) && (args.length == 2)) {        
-	            nbTests = nbTests + new Integer(args[0]);
-	            nbErreurs = nbErreurs + new Integer(args[1]);       
-	            args[0] = "" + nbTests;
-	            args[1] = "" + nbErreurs;
-	         }
+	   
 
 	      
 	      TestsInitialisation.main(resultats);

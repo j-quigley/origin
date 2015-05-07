@@ -7,7 +7,7 @@ public class Review {
 	 * @uml.property name="member"
 	 * @uml.associationEnd multiplicity="(1 1)" inverse="review:avis.Member"
 	 */
-	private Member member = null;
+	private Member author = null;
 
 	/** 
 	 * Getter of the property <tt>member</tt>
@@ -15,17 +15,9 @@ public class Review {
 	 * @uml.property  name="member"
 	 */
 	public Member getMember() {
-		return member;
+		return author;
 	}
 
-	/** 
-	 * Setter of the property <tt>member</tt>
-	 * @param member  The member to set.
-	 * @uml.property  name="member"
-	 */
-	public void setMember(Member member) {
-		this.member = member;
-	}
 
 	/**
 	 * @uml.property  name="note"
@@ -42,15 +34,6 @@ public class Review {
 	}
 
 	/**
-	 * Setter of the property <tt>note</tt>
-	 * @param note  The note to set.
-	 * @uml.property  name="note"
-	 */
-	public void setNote(float note) {
-		this.note = note;
-	}
-
-	/**
 	 * @uml.property  name="commentaire"
 	 */
 	private String commentaire;
@@ -63,21 +46,25 @@ public class Review {
 	public String getCommentaire() {
 		return commentaire;
 	}
-
-	/**
-	 * Setter of the property <tt>commentaire</tt>
-	 * @param commentaire  The commentaire to set.
-	 * @uml.property  name="commentaire"
-	 */
-	public void setCommentaire(String commentaire) {
-		this.commentaire = commentaire;
-	}
-
 		
 		/**
 		 */
-		public Review(float note_, String commentaire_){
+	public Review(Member author_, float note_, String commentaire_){
+		author = author_;
 		note=note_;
-		commentaire=commentaire_; }
+		commentaire=commentaire_; 
+	}
+	
+	public static boolean testBadEntry(String pseudo, String password,String titre, float note, String commentaire){
+		if(pseudo == null) return true;
+		if(password == null) return true;
+		if(titre == null) return true;
+		if(commentaire == null) return true;
+		if(pseudo.trim().length() < 1) return true;
+		if(password.trim().length() < 4) return true;
+		if(titre.trim().length() < 1) return true;
+		if((note < 0) || (note > 5)) return true;
+		return false;
+	}
 
 }
