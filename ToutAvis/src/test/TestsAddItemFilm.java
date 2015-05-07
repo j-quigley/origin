@@ -21,7 +21,7 @@ public class TestsAddItemFilm {
 
 
 
-	public static int addItemFilmBadEntryTest (SocialNetwork sn, String pseudo, String pwd, String titre, String genre, String realisateur, String scenariste, String idTest, String messErreur){
+	public static int addItemFilmBadEntryTest (SocialNetwork sn, String pseudo, String pwd, String titre, String genre, String realisateur, String scenariste,int duree, String idTest, String messErreur){
 		// vérifie que l'ajout d'un film est refusée (levée de l'exception BadEntry et pas de modification de sn)
 		// ne fait rien si c'est le cas
 		// sinon, affiche le message d'erreur passé en paramètre
@@ -29,7 +29,7 @@ public class TestsAddItemFilm {
 		
 		int nbFilms = sn.nbFilms();
 		try {
-			sn.addItemFilm (pseudo, pwd, titre, genre, realisateur, scenariste, nbFilms);
+			sn.addItemFilm (pseudo, pwd, titre, genre, realisateur, scenariste, duree);
 			System.out.println ("Test " + idTest + " : " + messErreur);
 			return 1;
 		}
@@ -48,10 +48,10 @@ public class TestsAddItemFilm {
 		}
 	}
 
-	public static int addItemFilmOKTest (SocialNetwork sn, String pseudo, String pwd, String titre, String genre, String realisateur,String scenariste, String idTest){
+	public static int addItemFilmOKTest (SocialNetwork sn, String pseudo, String pwd, String titre, String genre, String realisateur,String scenariste, int duree, String idTest){
 		int nbFilms = sn.nbFilms();
 		try{
-			sn.addItemFilm (pseudo, pwd, titre, genre, realisateur, scenariste, nbFilms);
+			sn.addItemFilm (pseudo, pwd, titre, genre, realisateur, scenariste, duree);
 			if (sn.nbFilms() != nbFilms+1) {
 				System.out.println("Test " + idTest + " :  le nombre de films n'a pas été correctement incrémenté");
 				return 1;
@@ -66,10 +66,10 @@ public class TestsAddItemFilm {
 		}
 	}
 
-	public static int addItemFilmAlreadyExistsTest (SocialNetwork sn, String pseudo, String pwd, String titre, String genre, String realisateur,String scenariste, String idTest, String messErreur){
+	public static int addItemFilmAlreadyExistsTest (SocialNetwork sn, String pseudo, String pwd, String titre, String genre, String realisateur,String scenariste, int duree, String idTest, String messErreur){
 		int nbFilms = sn.nbFilms();
 		try {
-			sn.addItemFilm (pseudo, pwd, titre, genre, realisateur, scenariste, nbFilms);
+			sn.addItemFilm (pseudo, pwd, titre, genre, realisateur, scenariste, duree);
 			System.out.println ("Test " + idTest + " : " + messErreur);
 			return 1;
 		}
@@ -88,10 +88,10 @@ public class TestsAddItemFilm {
 		}
 	}
 
-	public static int addItemFilmNotMemberTest (SocialNetwork sn, String pseudo, String pwd, String titre, String genre, String realisateur,String scenariste, String idTest, String messErreur){
+	public static int addItemFilmNotMemberTest (SocialNetwork sn, String pseudo, String pwd, String titre, String genre, String realisateur,String scenariste, int duree, String idTest, String messErreur){
 		int nbFilms = sn.nbFilms();
 		try {
-			sn.addItemFilm (pseudo, pwd, titre, genre, realisateur, scenariste, nbFilms);
+			sn.addItemFilm (pseudo, pwd, titre, genre, realisateur, scenariste, duree );
 			System.out.println ("Test " + idTest + " : " + messErreur);
 			return 1;
 		}
@@ -145,51 +145,52 @@ public class TestsAddItemFilm {
 		// tentative d'ajout de films avec entrées "incorrectes"
 
 		nbTests++;
-		nbErreurs += addItemFilmBadEntryTest ( sn, null, "qsdfgh", "titre", "genre", "realisateur", "scenariste", "3.1", "L'ajout d'un film avec un pseudo n'est pas instancié est accepté");
+		nbErreurs += addItemFilmBadEntryTest ( sn, null, "qsdfgh", "titre", "genre", "realisateur", "scenariste", 90, "3.1", "L'ajout d'un film avec un pseudo n'est pas instancié est accepté");
 		nbTests++;
-		nbErreurs += addItemFilmBadEntryTest ( sn, "   ", "qsdfgh", "titre", "genre", "realisateur", "scenariste", "3.2", "L'ajout d'un film avec un pseudo qui ne contient que des espaces est accepté");
+		nbErreurs += addItemFilmBadEntryTest ( sn, "   ", "qsdfgh", "titre", "genre", "realisateur", "scenariste", 90, "3.2", "L'ajout d'un film avec un pseudo qui ne contient que des espaces est accepté");
 		nbTests++;
-		nbErreurs += addItemFilmBadEntryTest ( sn, "jacques", "qsdfgh", null, "genre", "realisateur", "scenariste", "3.3", "L'ajout d'un film dont le titre n'est pas instancié est accepté");
+		nbErreurs += addItemFilmBadEntryTest ( sn, "jacques", "qsdfgh", null, "genre", "realisateur", "scenariste", 90, "3.3", "L'ajout d'un film dont le titre n'est pas instancié est accepté");
 		nbTests++;
-		nbErreurs += addItemFilmBadEntryTest ( sn, "jacques", "qsdfgh", "  ", "genre", "realisateur", "scenariste", "3.4", "L'ajout d'un film dont le titre ne contient que des espaces est accepté");
+		nbErreurs += addItemFilmBadEntryTest ( sn, "jacques", "qsdfgh", "  ", "genre", "realisateur", "scenariste", 90, "3.4", "L'ajout d'un film dont le titre ne contient que des espaces est accepté");
 		nbTests++;
-		nbErreurs += addItemFilmBadEntryTest ( sn, "jacques", "qsdfgh", "titre", null, "realisateur", "scenariste", "3.5", "L'ajout d'un film dont le genre n'est pas instancié est accepté");
+		nbErreurs += addItemFilmBadEntryTest ( sn, "jacques", "qsdfgh", "titre", null, "realisateur", "scenariste", 90, "3.5", "L'ajout d'un film dont le genre n'est pas instancié est accepté");
 		nbTests++;
-		nbErreurs += addItemFilmBadEntryTest ( sn, "jacques", "qsdfgh", "titre", "  ", "realisateur", "scenariste", "3.6", "L'ajout d'un film dont le genre ne contient que des espaces est accepté");
+		nbErreurs += addItemFilmBadEntryTest ( sn, "jacques", "qsdfgh", "titre", "  ", "realisateur", "scenariste", 90, "3.6", "L'ajout d'un film dont le genre ne contient que des espaces est accepté");
 		nbTests++;
-		nbErreurs += addItemFilmBadEntryTest ( sn, "jacques", "qsdfgh", "titre", "genre", null, "scenariste", "3.7", "L'ajout d'un film dont le realisateur n'est pas instancié est accepté");
+		nbErreurs += addItemFilmBadEntryTest ( sn, "jacques", "qsdfgh", "titre", "genre", null, "scenariste",90, "3.7",  "L'ajout d'un film dont le realisateur n'est pas instancié est accepté");
 		nbTests++;
-		nbErreurs += addItemFilmBadEntryTest ( sn, "jacques", "qsdfgh", "titre", "genre", "  ", "scenariste", "3.8", "L'ajout d'un film dont le realisateur ne contient que des espaces est accepté");
+		nbErreurs += addItemFilmBadEntryTest ( sn, "jacques", "qsdfgh", "titre", "genre", "  ", "scenariste", 90,"3.8",  "L'ajout d'un film dont le realisateur ne contient que des espaces est accepté");
 		nbTests++;
-		nbErreurs += addItemFilmBadEntryTest ( sn, "jacques", "qsdfgh", "titre", "genre", "realisateur", null, "3.9", "L'ajout d'un film dont le scenariste n'est pas instancié est accepté");
+		nbErreurs += addItemFilmBadEntryTest ( sn, "jacques", "qsdfgh", "titre", "genre", "realisateur", null, 90,"3.9", "L'ajout d'un film dont le scenariste n'est pas instancié est accepté");
 		nbTests++;
-		nbErreurs += addItemFilmBadEntryTest ( sn, "jacques", "qsdfgh", "titre", "genre", "realisateur", "  ", "3.10", "L'ajout d'un film dont le scenariste ne contient que des espaces est accepté");
+		nbErreurs += addItemFilmBadEntryTest ( sn, "jacques", "qsdfgh", "titre", "genre", "realisateur", "  ",  90,"3.10", "L'ajout d'un film dont le scenariste ne contient que des espaces est accepté");
+		nbTests++;
+		nbErreurs += addItemFilmBadEntryTest ( sn, "jacques", "qsdfgh", "titre", "genre", "realisateur", "  ", -90, "3.11",  "L'ajout d'un film avec une durée négative est accepté");
 
 		
 		// <=> fiche numéro 4
 
-		// ajout de 3 membres avec entr√©es "correctes"
-
+		// ajout de 3 films avec entr√©es "correctes"
 		nbTests++;
-		nbErreurs += addItemFilmOKTest ( sn, "Jean-Mi", "jeanjean", "Les tracteurs", "Thriller", "Jean-Pierre", "Bertrand", "4.1");
+		nbErreurs += addItemFilmOKTest ( sn, "Jean-Mi", "jeanjean", "Les tracteurs", "Thriller", "Jean-Pierre", "Bertrand", 90, "4.1");
 		nbTests++;
-		nbErreurs += addItemFilmOKTest ( sn, "Gaetan", "azerty", "La bière", "Documentaire", "Hervé", "Jean-Claude", "4.2");
+		nbErreurs += addItemFilmOKTest ( sn, "Gaetan", "azerty", "La bière", "Documentaire", "Hervé", "Jean-Claude", 90, "4.2");
 		nbTests++;
-		nbErreurs += addItemFilmOKTest ( sn, "Mick", "12345", "La maisel", "Policier", "Vincent", "Franck", "4.3");
+		nbErreurs += addItemFilmOKTest ( sn, "Mick", "12345", "La maisel", "Policier", "Vincent", "Franck", 90, "4.3");
 
 		
 		
 		// tentative d'ajout de film avec identifiants erronés
 
 		nbTests++;
-		nbErreurs += addItemFilmNotMemberTest( sn, "Jean-Jacques", "jeanjean", "Les tracteurs", "Thriller", "Jean-Pierre", "Bertrand", "4.4", "L'ajout d'un film avec un pseudo n'existant pas est accepté");
+		nbErreurs += addItemFilmNotMemberTest( sn, "Jean-Jacques", "jeanjean", "Les tracteurs", "Thriller", "Jean-Pierre", "Bertrand", 90, "4.4", "L'ajout d'un film avec un pseudo n'existant pas est accepté");
 		nbTests++;
-		nbErreurs += addItemFilmNotMemberTest( sn, "Jean-Mi", "irefirg", "Les tracteurs 2", "Thriller", "Jean-Pierre", "Bertrand", "4.5", "L'ajout d'un film avec un couple id/pwd erroné est accepté");
+		nbErreurs += addItemFilmNotMemberTest( sn, "Jean-Mi", "irefirg", "Les tracteurs 2", "Thriller", "Jean-Pierre", "Bertrand", 90, "4.5",  "L'ajout d'un film avec un couple id/pwd erroné est accepté");
 		
 		//tentative d'ajout de film déjà existant
 		
 		nbTests++;
-		nbErreurs += addItemFilmAlreadyExistsTest( sn, "Gaetan", "azerty", "  Les tracteurs ", "Western", "Jean-Pierre", "Bertrand", "4.6", "L'ajout d'un film avec le même nom que le premier ajouté est accepté");
+		nbErreurs += addItemFilmAlreadyExistsTest( sn, "Gaetan", "azerty", "  Les tracteurs ", "Western", "Jean-Pierre", "Bertrand",90, "4.6", "L'ajout d'un film avec le même nom que le premier ajouté est accepté");
 
 		
 		nbTests++;

@@ -1,6 +1,6 @@
 package test;
 
-public class Test {
+public class TestSocialNetwork {
 
 	   /**
 	    * @param args

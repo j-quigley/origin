@@ -7,6 +7,17 @@ public class ItemFilm extends Item {
 	 * @uml.property  name="duree"
 	 */
 	private int duree;
+	
+	
+
+	public ItemFilm(Member author_, String titre_, String genre_, String realisateur_, String scenariste_, int duree_) {
+		super(author_);
+		titre = titre_;
+		genre = genre_;
+		realisateur = realisateur_;
+		scenariste = scenariste_;
+		duree = duree_;
+	}
 
 	/**
 	 * Getter of the property <tt>duree</tt>
@@ -81,8 +92,11 @@ public class ItemFilm extends Item {
 		if(realisateur == null) return true;
 		if(scenariste == null) return true;
 		if(pseudo.trim().length() < 1) return true;
+		if(genre.trim().length() < 1) return true;
 		if(password.trim().length() < 4) return true;
-		if(titre.length() < 1) return true;
+		if(titre.trim().length() < 1) return true;
+		if(realisateur.trim().length() < 1) return true;
+		if(scenariste.trim().length() < 1) return true;
 		if(duree < 1) return true;
 		return false;
 	}

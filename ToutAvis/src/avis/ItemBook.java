@@ -3,6 +3,14 @@ package avis;
 
 public class ItemBook extends Item {
 
+	public ItemBook(Member author_, String titre_, String auteur_, String genre_, int nbPages_) {
+		super(author_);
+		titre = titre_;
+		auteur = auteur_;
+		genre = genre_;
+		nbPages = nbPages_;
+	}
+
 	/**
 	 * @uml.property  name="auteur"
 	 */
@@ -67,7 +75,7 @@ public class ItemBook extends Item {
 		if(auteur == null) return true;
 		if(pseudo.trim().length() < 1) return true;
 		if(password.trim().length() < 4) return true;
-		if(titre.length() < 1) return true;
+		if(titre.trim().length() < 1) return true;
 		if(nbPages < 0) return true;
 		return false;
 	}
