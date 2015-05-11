@@ -338,27 +338,28 @@ public class SocialNetwork {
 		//AJOUT D'UNE REVIEW
 		for(Item reviewedFilm : items){//on balaye la liste des items presents dans social network
 			if(reviewedFilm instanceof ItemFilm){//on ne releve que les items de type itemFilm
-				if(m==((ItemFilm)reviewedFilm).author && (((ItemFilm) reviewedFilm).equals(j))){// on verifie que m est l'auteur du review du film j
-					if(((ItemFilm) reviewedFilm).reviews.contains(m)){// si la liste reviews contient le film...
-						int memberCommentPosition = ((ItemFilm) reviewedFilm).reviews.indexOf(m);// on recupere l'index du commentaire de m dans la liste
-						((ItemFilm) reviewedFilm).reviews.set(memberCommentPosition, new Review(m,note,commentaire));// on remplace le commentaires et note de j par les nouveaux
+				if (((ItemFilm) reviewedFilm).equals(j)){// on verifie que m est l'auteur du review du film j
+					Review r1 = null;
+					for(Review r : reviewedFilm.reviews){
+						if(r.getMember()==m){
+							r1 = r;
+						}
 					}
-					else{					
+					if(r1 == null){					
 						Review newReview = new Review(m,note,commentaire);// creation d'un nouveau review
 						((ItemFilm) reviewedFilm).addReview(newReview);// ajout de la nouvelle review.
-					}	
+					}
+					else{
+						reviewedFilm.removeReview(r1);
+						Review newReview = new Review(m,note,commentaire);// creation d'un nouveau review
+						((ItemFilm) reviewedFilm).addReview(newReview);// ajout de la nouvelle review.
+					}
+					note = reviewedFilm.getMoyenne();// on stock la moyenne dans note
+					if(note<0.0f)// si note inferieure...
+						note = 0.0f;// note est nulle
 				}		
 			}
 		}	
-		for(Item i : items){//on balaye la liste des items presents dans social network
-			if(i instanceof ItemFilm){//on ne releve que les items de type itemFilm
-				if(((ItemFilm) i).getTitre().trim().toLowerCase().equals(titre.trim().toLowerCase())){//on filtre  les films dont le titre correspond
-					note = i.getMoyenne();// on stock la moyenne dans note
-					if(note>=0.0f)// si note inferieure...
-						note = 0.0f;// note est nulle
-				}
-			}
-		}
 		return note; // retourne note
 	}
 	
@@ -414,28 +415,29 @@ public class SocialNetwork {
 			
 			//AJOUT D'UNE REVIEW
 			for(Item reviewedBook : items){//on balaye la liste des items presents dans social network
-				if(reviewedBook instanceof ItemBook){//on ne releve que les items de type itemFilm
-					if(m==((ItemBook)reviewedBook).author && (((ItemBook) reviewedBook).equals(j))){// on verifie que m est l'auteur du review du film j
-						if(((ItemBook) reviewedBook).reviews.contains(m)){// si la liste reviews contient le film...
-							int memberCommentPosition = ((ItemBook) reviewedBook).reviews.indexOf(m);// on recupere l'index du commentaire de m dans la liste
-							((ItemBook) reviewedBook).reviews.set(memberCommentPosition, new Review(m,note,commentaire));// on remplace le commentaires et note de j par les nouveaux
+				if(reviewedBook instanceof ItemBook){//on ne releve que les items de type itemBook
+					if (((ItemBook) reviewedBook).equals(j)){// on verifie que m est l'auteur du review du Book j
+						Review r1 = null;
+						for(Review r : reviewedBook.reviews){
+							if(r.getMember()==m){
+								r1 = r;
+							}
 						}
-						else{					
+						if(r1 == null){					
 							Review newReview = new Review(m,note,commentaire);// creation d'un nouveau review
-							((ItemFilm) reviewedBook).addReview(newReview);// ajout de la nouvelle review.
-						}	
+							((ItemBook) reviewedBook).addReview(newReview);// ajout de la nouvelle review.
+						}
+						else{
+							reviewedBook.removeReview(r1);
+							Review newReview = new Review(m,note,commentaire);// creation d'un nouveau review
+							((ItemBook) reviewedBook).addReview(newReview);// ajout de la nouvelle review.
+						}
+						note = reviewedBook.getMoyenne();// on stock la moyenne dans note
+						if(note<0.0f)// si note inferieure...
+							note = 0.0f;// note est nulle
 					}		
 				}
 			}	
-			for(Item i : items){//on balaye la liste des items presents dans social network
-				if(i instanceof ItemBook){//on ne releve que les items de type itemFilm
-					if(((ItemBook) i).getTitre().trim().toLowerCase().equals(titre.trim().toLowerCase())){//on filtre  les films dont le titre correspond
-						note = i.getMoyenne();// on stock la moyenne dans note
-						if(note>=0.0f)// si note inferieure...
-							note = 0.0f;// note est nulle
-					}
-				}
-			}
 			return note; // retourne note
 		}
 

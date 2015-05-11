@@ -37,4 +37,7 @@ public abstract class Item {
 	public void addReview(Review r){
 		reviews.add(r);
 	}
+	public void removeReview(Review r){
+		reviews.remove(r);
+	}
 }
