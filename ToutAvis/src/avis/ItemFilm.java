@@ -7,6 +7,7 @@ public class ItemFilm extends Item {
 	 * @uml.property  name="duree"
 	 */
 	private int duree;
+	//TEST
 	
 	
 
