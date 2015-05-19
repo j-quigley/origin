@@ -67,6 +67,16 @@ public class ItemBook extends Item {
 		return titre;
 	}
 	
+	public String toString(){
+		String result = "Livre :"+titre+" genre : "+genre+" auteur : "+auteur+" nombres de pages : "+nbPages+" moyenne des notes : "+getMoyenne()+"\n";
+		result=result+("Createur : "+author.getPseudo()+"\n");
+		result=result+("Liste des commentaires : \n");
+		for(Review r : reviews){
+			result=result+(r.toString()+"\n");
+		}
+		return result;
+	}
+	
 	public static boolean testBadEntry(String pseudo, String password, String titre, String genre, String auteur, int nbPages){
 		if(pseudo == null) return true;
 		if(password == null) return true;
@@ -76,7 +86,7 @@ public class ItemBook extends Item {
 		if(pseudo.trim().length() < 1) return true;
 		if(password.trim().length() < 4) return true;
 		if(titre.trim().length() < 1) return true;
-		if(nbPages < 0) return true;
+		if(nbPages <= 0) return true;
 		return false;
 	}
 

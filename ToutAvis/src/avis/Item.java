@@ -40,4 +40,21 @@ public abstract class Item {
 	public void removeReview(Review r){
 		reviews.remove(r);
 	}
+	
+	public boolean isReview(String login){
+		for(Review r : reviews){
+			if(r.getMember().getPseudo().equals(login))
+				return true;
+		}
+		return false;
+	}
+	
+	
+	
+	public void addOpinion(Member author, float note){
+		for(Review r : reviews){
+			if(r.getMember().getPseudo().equals(author.getPseudo()))
+				r.addOpinion(author, note);
+		}		
+	}	
 }

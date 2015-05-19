@@ -9,6 +9,7 @@ import exception.ItemFilmAlreadyExists;
 import exception.ItemBookAlreadyExists;
 import exception.MemberAlreadyExists;
 import exception.NotItem;
+import exception.NotReview;
 import exception.NotMember;
 import java.util.Collection;
 
@@ -447,8 +448,56 @@ public class SocialNetwork {
 	 * @return la chaÃ®ne de caractÃ¨res reprÃ©sentation textuelle du <i>SocialNetwork</i> 
 	 */
 	public String toString() {
-		return "";
+		String result = "R�seau social de "+nbMembers()+" membres\n";
+		result= result+("Liste des membres :\n");
+		for(Member m : members){
+			result=result+(m.toString()+"\n");
+		}
+		result=result+("Nombre de livres : "+nbBooks()+" Nombre de films : "+nbFilms()+"\n");
+		result=result+("Liste des items :\n");
+		for(Item i : items){
+			if(i instanceof ItemFilm){
+				result=result+(((ItemFilm ) i).toString()+"\n");
+			}
+			if(i instanceof ItemBook){
+				result=result+(((ItemBook ) i).toString()+"\n");
+			}
+		}
+		return result;
 	}
+
+		
+		/**
+		 * Permet d'ajouter une opinion � un Review.
+		 */
+		public void reviewOpinion(String pseudo, String password, String titre, String login, float note)	throws BadEntry, NotItem, NotMember, NotReview {
+			//Tests BadEntry
+			if(Opinion.testBadEntry(pseudo, password, titre, login, note)) throw new BadEntry("Param�tres incorrects");
+			//Tests NotMember
+			Member m = null;
+			for(Member membreTest : members ) {
+				//on teste si le membre existe
+				if (membreTest.getPseudo().trim().toLowerCase().equals(pseudo.trim().toLowerCase())) {
+					m = membreTest;
+				}
+			}
+			//test si le membre est prŽsent dans la liste
+			if (m == null) throw new NotMember("Not member : Membre non prŽsent"); 
+			if(!m.isPassword(password)) throw new NotMember("Password erronŽ");
+			//Test NotItem
+			Item j = null;
+			for(Item i : items){
+				if(i instanceof ItemBook){
+					if(((ItemBook) i).getTitre().trim().toLowerCase().equals(titre.trim().toLowerCase())){
+						j = i;
+					}
+				}
+			}
+			if(j==null) throw new NotItem("Pas d'item correspondant");
+			//Tests NotReview
+			if(!j.isReview(login)) throw new NotReview("Aucun avis correspondant");
+			Review r = j.
+		}
 
 
 }

@@ -1,6 +1,7 @@
 package avis;
 
 import exception.BadEntry;
+import java.util.Collection;
 
 
 public class Member {
@@ -42,6 +43,9 @@ public class Member {
 		return password == pwd;
 	}
 
+	public String toString(){
+		return "Pseudo : "+pseudo+ " profil : "+profil;
+	}
 
 			
 		/**
@@ -62,6 +66,39 @@ public class Member {
 		if(profil == null) return true;
 		return false;	
 	}
+
+
+		/**
+		 * @uml.property  name="reviews"
+		 * @uml.associationEnd  multiplicity="(0 -1)" inverse="member:avis.Review"
+		 */
+		private Collection<Review> reviews;
+
+		/**
+		 * Getter of the property <tt>reviews</tt>
+		 * @return  Returns the reviews.
+		 * @uml.property  name="reviews"
+		 */
+		public Collection<Review> getReviews() {
+			return reviews;
+		}
+
+
+		/**
+		 * Setter of the property <tt>reviews</tt>
+		 * @param reviews  The reviews to set.
+		 * @uml.property  name="reviews"
+		 */
+		public void setReviews(Collection<Review> reviews) {
+			this.reviews = reviews;
+		}
+
+
+		/**
+		 * Mesure la qualité des reviews émises par le membre
+		 * @uml.property  name="karma"
+		 */
+		private float karma;
 
 
 			

@@ -83,6 +83,16 @@ public class ItemFilm extends Item {
 	public String getTitre() {
 		return titre;
 	}
+	
+	public String toString(){
+		String result = "Film :"+titre+" genre : "+genre+" realisateur : "+realisateur+" scenariste : "+scenariste+" duree : "+duree+" moyenne des notes : "+getMoyenne()+"\n";
+		result=result+("Createur : "+author.getPseudo()+"\n");
+		result=result+("Liste des commentaires : \n");
+		for(Review r : reviews){
+			result=result+(r.toString()+"\n");
+		}
+		return result;
+	}
 
 	public static boolean testBadEntry(String pseudo, String password, String titre, String genre, String realisateur, String scenariste, int duree){
 		if(pseudo == null) return true;

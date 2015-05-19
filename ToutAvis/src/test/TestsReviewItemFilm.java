@@ -201,6 +201,14 @@ public class TestsReviewItemFilm {
 		// bilan du test de addMember
 		System.out.println("TestsAddMember :   " + nbErreurs + " erreur(s) / " +  nbTests + " tests effectués");
 
+		// ajouts au bilan en cours si le bilan est passŽ en param�tre
+        if ((args != null) && (args.length == 2)) {        
+           nbTests = nbTests + new Integer(args[0]);
+           nbErreurs = nbErreurs + new Integer(args[1]);       
+           args[0] = "" + nbTests;
+           args[1] = "" + nbErreurs;
+        }
+		
 	}
 }
 

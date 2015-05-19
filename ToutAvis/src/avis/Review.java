@@ -1,11 +1,14 @@
 package avis;
 
+import java.util.Collection;
+import java.util.LinkedList;
+
 
 public class Review {
 
 	/** 
 	 * @uml.property name="member"
-	 * @uml.associationEnd multiplicity="(1 1)" inverse="review:avis.Member"
+	 * @uml.associationEnd multiplicity="(1 1)" inverse="reviews:avis.Member"
 	 */
 	private Member author = null;
 
@@ -55,6 +58,10 @@ public class Review {
 		commentaire=commentaire_; 
 	}
 	
+	public String toString(){
+		return "Note : "+note+" commentaire : "+commentaire+" auteur : "+author.getPseudo();
+	}
+	
 	public static boolean testBadEntry(String pseudo, String password,String titre, float note, String commentaire){
 		if(pseudo == null) return true;
 		if(password == null) return true;
@@ -65,6 +72,29 @@ public class Review {
 		if(titre.trim().length() < 1) return true;
 		if((note < 0) || (note > 5)) return true;
 		return false;
+	}
+
+
+	/**
+	 * @uml.property  name="opinions"
+	 * @uml.associationEnd  multiplicity="(0 -1)" inverse="review:avis.Opinion"
+	 */
+	private LinkedList<Opinion> opinions;
+
+	
+	
+	public void addOpinion(Member author, float note){
+		Opinion o1 = null;
+		for(Opinion o : opinions){
+			if(o.getPseudo().equals(author.getPseudo()))
+				o1 = o;
+		}
+		if(o1 == null)
+		opinions.add(new Opinion(author, note));
+		else{
+			opinions.remove(o1);
+			opinions.add(new Opinion(author, note));
+		}
 	}
 
 }
