@@ -496,7 +496,8 @@ public class SocialNetwork {
 			if(j==null) throw new NotItem("Pas d'item correspondant");
 			//Tests NotReview
 			if(!j.isReview(login)) throw new NotReview("Aucun avis correspondant");
-			Review r = j.
+			Review r = j.getReview(login);
+			r.addOpinion(m, note);
 		}
 
 

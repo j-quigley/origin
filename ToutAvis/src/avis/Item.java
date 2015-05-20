@@ -49,7 +49,14 @@ public abstract class Item {
 		return false;
 	}
 	
-	
+	public Review getReview(String login){
+		Review r1 = null;
+		for(Review r : reviews){
+			if(r.getMember().getPseudo().equals(login))
+				r1 = r;
+		}
+		return r1;
+	}
 	
 	public void addOpinion(Member author, float note){
 		for(Review r : reviews){
