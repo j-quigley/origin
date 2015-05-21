@@ -348,13 +348,13 @@ public class SocialNetwork {
 					}
 					if(r1 == null){					
 						Review newReview = new Review(m,note,commentaire);// creation d'un nouveau review
-						((ItemBook) reviewedFilm).addReview(newReview);// ajout de la nouvelle review.
+						((ItemFilm) reviewedFilm).addReview(newReview);// ajout de la nouvelle review.
 						m.addReview(newReview);
 					}
 					else{
 						reviewedFilm.removeReview(r1);
 						Review newReview = new Review(m,note,commentaire);// creation d'un nouveau review
-						((ItemBook) reviewedFilm).addReview(newReview);// ajout de la nouvelle review.
+						((ItemFilm) reviewedFilm).addReview(newReview);// ajout de la nouvelle review.
 						m.removeReview(r1);
 					}
 					reviewedFilm.updateNote();
