@@ -37,6 +37,7 @@ public class Member {
 		pseudo = pseudo_;
 		password = password_;
 		profil = profil_; 
+		karma = 1;
 	}
 	
 	public boolean isPassword(String pwd){
