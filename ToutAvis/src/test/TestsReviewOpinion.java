@@ -13,7 +13,7 @@ public class TestsReviewOpinion {
 		public float value;
 	}
 
-	public class Karma{
+	static class Karma{
 		public float value;
 	}
 
@@ -147,7 +147,7 @@ public class TestsReviewOpinion {
 		try{
 			sn.addItemBook("jacques", "aaaa", "La biere", "V Hugo","Policier",350);
 			sn.addItemBook("nico", "bbbb", "Dirac en 0", "Nico", "Autobiographie",120);
-			sn.addItemFilm("jacques", "cccc", "La biere", "Policier","Jacouille", "Bruno",  350);
+			sn.addItemFilm("jacques", "aaaa", "La biere", "Policier","Jacouille", "Bruno",  350);
 
 		}
 		catch(Exception e){
@@ -181,7 +181,7 @@ public class TestsReviewOpinion {
 		nbTests++;
 		nbErreurs =+ reviewOpinionBadEntryTest(sn,moyenne," ", "aaaa",  "book","La biere", "nico", 1.0f, "11.2", "L'ajout d'une opinion avec un pseudo ne contenant pas un caracteres, autre que des espaces, est acceptÃ©");
 		nbTests++;
-		nbErreurs += reviewOpinionBadEntryTest ( sn, moyenne, "jacques","book", null, "La biere",  "nico", 0.0f, "11.3", "L'ajout d'une opinion dont le password n'est pas instanciÃ© est acceptÃ©");
+		nbErreurs += reviewOpinionBadEntryTest ( sn, moyenne, "jacques", null, "book","La biere",  "nico", 0.0f, "11.3", "L'ajout d'une opinion dont le password n'est pas instanciÃ© est acceptÃ©");
 		nbTests++;
 		nbErreurs += reviewOpinionBadEntryTest ( sn, moyenne, "jacques","  aa  ", "book",null,  "nico", 0.0f, "11.4","L'ajout d'un membre dont le password ne contient pas au moins 4 caracteres, autre que des espaces de dÃ©but ou de fin, est acceptÃ©");
 		nbTests++;
@@ -227,7 +227,7 @@ public class TestsReviewOpinion {
 		// tentative d'ajout d'opinion avec login de reviewer inexistant
 
 		nbTests++;
-		nbErreurs += reviewOpinionNotItemTest(sn, moyenne, "jacques", "aaaa","book","La biere","nicoshow",3.0f,"12.8","L'ajout d'une opinion avec un login de reviewer inexistant est acceptÃ©");
+		nbErreurs += reviewOpinionNotReviewTest(sn, moyenne, "jacques", "aaaa","book","La biere","nicoshow",3.0f,"12.8","L'ajout d'une opinion avec un login de reviewer inexistant est acceptÃ©");
 
 
 		// ce n'est pas du test, mais cela peut "rassurer"...
