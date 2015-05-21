@@ -492,12 +492,23 @@ public class SocialNetwork {
 						j = i;
 					}
 				}
+				if(i instanceof ItemFilm){
+					if(((ItemFilm) i).getTitre().trim().toLowerCase().equals(titre.trim().toLowerCase())){
+						j = i;
+					}
+				}
 			}
 			if(j==null) throw new NotItem("Pas d'item correspondant");
 			//Tests NotReview
 			if(!j.isReview(login)) throw new NotReview("Aucun avis correspondant");
+			//Récupération du review concerné
 			Review r = j.getReview(login);
+			//Ajout de l'avis dans la liste d'opinions
 			r.addOpinion(m, note);
+			//Mise à jour du karma du membre
+			m.updateKarma();
+			//Mise à jour de la note de l'item
+			j.updateNote();
 		}
 
 

@@ -20,26 +20,13 @@ public class ItemFilm extends Item {
 		duree = duree_;
 	}
 
-	/**
-	 * Getter of the property <tt>duree</tt>
-	 * @return  Returns the duree.
-	 * @uml.property  name="duree"
-	 */
-	public int getDuree() {
-		return duree;
-	}
 
 	/**
 	 * @uml.property  name="genre"
 	 */
 	private String genre;
 
-	/**
-	 * Getter of the property <tt>genre</tt>
-	 * @return  Returns the genre.
-	 * @uml.property  name="genre"
-	 */
-	public String getGenre() {
+	public String getGenre(){
 		return genre;
 	}
 
@@ -48,28 +35,13 @@ public class ItemFilm extends Item {
 	 */
 	private String realisateur;
 
-	/**
-	 * Getter of the property <tt>realisateur</tt>
-	 * @return  Returns the realisateur.
-	 * @uml.property  name="realisateur"
-	 */
-	public String getRealisateur() {
-		return realisateur;
-	}
 
 	/**
 	 * @uml.property  name="scenariste"
 	 */
 	private String scenariste;
 
-	/**
-	 * Getter of the property <tt>scenariste</tt>
-	 * @return  Returns the scenariste.
-	 * @uml.property  name="scenariste"
-	 */
-	public String getScenariste() {
-		return scenariste;
-	}
+
 
 	/**
 	 * @uml.property  name="titre"

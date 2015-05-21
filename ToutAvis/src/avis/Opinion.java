@@ -35,4 +35,8 @@ public class Opinion {
 	public String getPseudo(){
 		return author.getPseudo();
 	}
+	
+	public float getNote(){
+		return note;
+	}
 }

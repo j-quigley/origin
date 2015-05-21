@@ -16,42 +16,18 @@ public class ItemBook extends Item {
 	 */
 	private String auteur;
 
-	/**
-	 * Getter of the property <tt>auteur</tt>
-	 * @return  Returns the auteur.
-	 * @uml.property  name="auteur"
-	 */
-	public String getAuteur() {
-		return auteur;
-	}
 
 	/**
 	 * @uml.property  name="genre"
 	 */
 	private String genre;
 
-	/**
-	 * Getter of the property <tt>genre</tt>
-	 * @return  Returns the genre.
-	 * @uml.property  name="genre"
-	 */
-	public String getGenre() {
-		return genre;
-	}
 
 	/**
 	 * @uml.property  name="nbPages"
 	 */
 	private int nbPages;
 
-	/**
-	 * Getter of the property <tt>nbPages</tt>
-	 * @return  Returns the nbPages.
-	 * @uml.property  name="nbPages"
-	 */
-	public int getNbPages() {
-		return nbPages;
-	}
 
 	/**
 	 * @uml.property  name="titre"
@@ -65,6 +41,10 @@ public class ItemBook extends Item {
 	 */
 	public String getTitre() {
 		return titre;
+	}
+	
+	public String getGenre(){
+		return genre;
 	}
 	
 	public String toString(){

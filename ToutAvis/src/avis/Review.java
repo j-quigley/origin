@@ -81,8 +81,6 @@ public class Review {
 	 */
 	private LinkedList<Opinion> opinions;
 
-	
-	
 	public void addOpinion(Member author, float note){
 		Opinion o1 = null;
 		for(Opinion o : opinions){
@@ -96,5 +94,6 @@ public class Review {
 			opinions.add(new Opinion(author, note));
 		}
 	}
+	
 
 }

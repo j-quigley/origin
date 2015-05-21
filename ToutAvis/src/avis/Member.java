@@ -74,32 +74,25 @@ public class Member {
 		 */
 		private Collection<Review> reviews;
 
-		/**
-		 * Getter of the property <tt>reviews</tt>
-		 * @return  Returns the reviews.
-		 * @uml.property  name="reviews"
-		 */
-		public Collection<Review> getReviews() {
-			return reviews;
-		}
-
-
-		/**
-		 * Setter of the property <tt>reviews</tt>
-		 * @param reviews  The reviews to set.
-		 * @uml.property  name="reviews"
-		 */
-		public void setReviews(Collection<Review> reviews) {
-			this.reviews = reviews;
-		}
-
 
 		/**
 		 * Mesure la qualité des reviews émises par le membre
 		 * @uml.property  name="karma"
 		 */
 		private float karma;
-
+		
+		public void updateKarma(){
+			float moy = 0;
+			for(Review r : reviews){
+				moy =+ r.getNote();
+			}
+			moy = moy / reviews.size();
+			karma = moy / 5;
+		}
+		
+		public float getKarma(){
+			return karma;
+		}
 
 			
 			
