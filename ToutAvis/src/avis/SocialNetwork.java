@@ -335,7 +335,7 @@ public class SocialNetwork {
 			}
 		}
 		if(j==null) throw new NotItem("Pas d'item correspondant");
-		
+
 		//AJOUT D'UNE REVIEW
 		for(Item reviewedFilm : items){//on balaye la liste des items presents dans social network
 			if(reviewedFilm instanceof ItemFilm){//on ne releve que les items de type itemFilm
@@ -348,12 +348,14 @@ public class SocialNetwork {
 					}
 					if(r1 == null){					
 						Review newReview = new Review(m,note,commentaire);// creation d'un nouveau review
-						((ItemFilm) reviewedFilm).addReview(newReview);// ajout de la nouvelle review.
+						((ItemBook) reviewedFilm).addReview(newReview);// ajout de la nouvelle review.
+						m.addReview(newReview);
 					}
 					else{
 						reviewedFilm.removeReview(r1);
 						Review newReview = new Review(m,note,commentaire);// creation d'un nouveau review
-						((ItemFilm) reviewedFilm).addReview(newReview);// ajout de la nouvelle review.
+						((ItemBook) reviewedFilm).addReview(newReview);// ajout de la nouvelle review.
+						m.removeReview(r1);
 					}
 					reviewedFilm.updateNote();
 					note = reviewedFilm.getMoyenne();// on stock la moyenne dans note
@@ -364,7 +366,7 @@ public class SocialNetwork {
 		}	
 		return note; // retourne note
 	}
-	
+
 	/**
 	 * Donner son opinion sur un item livre.
 	 * Ajoute l'opinion de ce membre sur ce livre au <i>SocialNetwork</i> 
@@ -390,59 +392,61 @@ public class SocialNetwork {
 	 * @return la note moyenne des notes sur ce livre
 	 */
 	public float reviewItemBook(String pseudo, String password, String titre, float note, String commentaire) throws BadEntry, NotMember, NotItem {
-		
-			//Test BadEntry
-			if(Review.testBadEntry(pseudo, password, titre, note, commentaire)) throw new BadEntry("ParamÔøΩtres incorrects");
-			//Tests NotMember
-			Member m = null;
-			for(Member membreTest : members ) {
-				//on teste si le membre existe
-				if (membreTest.getPseudo().trim().toLowerCase().equals(pseudo.trim().toLowerCase())) {
-					m = membreTest;
-				}
+
+		//Test BadEntry
+		if(Review.testBadEntry(pseudo, password, titre, note, commentaire)) throw new BadEntry("ParamÔøΩtres incorrects");
+		//Tests NotMember
+		Member m = null;
+		for(Member membreTest : members ) {
+			//on teste si le membre existe
+			if (membreTest.getPseudo().trim().toLowerCase().equals(pseudo.trim().toLowerCase())) {
+				m = membreTest;
 			}
-			//test si le membre est pr≈Ωsent dans la liste
-			if (m == null) throw new NotMember("Not member : Membre non pr≈Ωsent"); 
-			if(!m.isPassword(password)) throw new NotMember("Password erron≈Ω");
-			//Test NotItem
-			Item j = null;
-			for(Item i : items){
-				if(i instanceof ItemBook){
-					if(((ItemBook) i).getTitre().trim().toLowerCase().equals(titre.trim().toLowerCase())){
-						j = i;
-					}
-				}
-			}
-			if(j==null) throw new NotItem("Pas d'item correspondant");
-			
-			//AJOUT D'UNE REVIEW
-			for(Item reviewedBook : items){//on balaye la liste des items presents dans social network
-				if(reviewedBook instanceof ItemBook){//on ne releve que les items de type itemBook
-					if (((ItemBook) reviewedBook).equals(j)){// on verifie que m est l'auteur du review du Book j
-						Review r1 = null;
-						for(Review r : reviewedBook.reviews){
-							if(r.getMember()==m){
-								r1 = r;
-							}
-						}
-						if(r1 == null){					
-							Review newReview = new Review(m,note,commentaire);// creation d'un nouveau review
-							((ItemBook) reviewedBook).addReview(newReview);// ajout de la nouvelle review.
-						}
-						else{
-							reviewedBook.removeReview(r1);
-							Review newReview = new Review(m,note,commentaire);// creation d'un nouveau review
-							((ItemBook) reviewedBook).addReview(newReview);// ajout de la nouvelle review.
-						}
-						reviewedBook.updateNote();
-						note = reviewedBook.getMoyenne();// on stock la moyenne dans note
-						if(note<0.0f)// si note inferieure...
-							note = 0.0f;// note est nulle
-					}		
-				}
-			}	
-			return note; // retourne note
 		}
+		//test si le membre est pr≈Ωsent dans la liste
+		if (m == null) throw new NotMember("Not member : Membre non pr≈Ωsent"); 
+		if(!m.isPassword(password)) throw new NotMember("Password erron≈Ω");
+		//Test NotItem
+		Item j = null;
+		for(Item i : items){
+			if(i instanceof ItemBook){
+				if(((ItemBook) i).getTitre().trim().toLowerCase().equals(titre.trim().toLowerCase())){
+					j = i;
+				}
+			}
+		}
+		if(j==null) throw new NotItem("Pas d'item correspondant");
+
+		//AJOUT D'UNE REVIEW
+		for(Item reviewedBook : items){//on balaye la liste des items presents dans social network
+			if(reviewedBook instanceof ItemBook){//on ne releve que les items de type itemBook
+				if (((ItemBook) reviewedBook).equals(j)){// on verifie que m est l'auteur du review du Book j
+					Review r1 = null;
+					for(Review r : reviewedBook.reviews){
+						if(r.getMember()==m){
+							r1 = r;
+						}
+					}
+					if(r1 == null){					
+						Review newReview = new Review(m,note,commentaire);// creation d'un nouveau review
+						((ItemBook) reviewedBook).addReview(newReview);// ajout de la nouvelle review.
+						m.addReview(newReview);
+					}
+					else{
+						reviewedBook.removeReview(r1);
+						Review newReview = new Review(m,note,commentaire);// creation d'un nouveau review
+						((ItemBook) reviewedBook).addReview(newReview);// ajout de la nouvelle review.
+						m.removeReview(r1);
+					}
+					reviewedBook.updateNote();
+					note = reviewedBook.getMoyenne();// on stock la moyenne dans note
+					if(note<0.0f)// si note inferieure...
+						note = 0.0f;// note est nulle
+				}		
+			}
+		}	
+		return note; // retourne note
+	}
 
 	/**
 	 * Obtenir une repr√É¬©sentation textuelle du <i>SocialNetwork</i>.
@@ -468,53 +472,60 @@ public class SocialNetwork {
 		return result;
 	}
 
-		
-		/**
-		 * Permet d'ajouter une opinion à un Review.
-		 */
-		public void reviewOpinion(String pseudo, String password, String titre, String login, float note)	throws BadEntry, NotItem, NotMember, NotReview {
-			//Tests BadEntry
-			if(Opinion.testBadEntry(pseudo, password, titre, login, note)) throw new BadEntry("Paramètres incorrects");
-			//Tests NotMember
-			Member m = null;
-			for(Member membreTest : members ) {
-				//on teste si le membre existe
-				if (membreTest.getPseudo().trim().toLowerCase().equals(pseudo.trim().toLowerCase())) {
-					m = membreTest;
-				}
+
+	/**
+	 * Permet d'ajouter une opinion à un Review.
+	 */
+	public float reviewOpinion(String pseudo, String password, String type, String titre, String login, float note)	throws BadEntry, NotItem, NotMember, NotReview {
+		//Tests BadEntry
+		if(Opinion.testBadEntry(pseudo, password, type, titre, login, note)) throw new BadEntry("Paramètres incorrects");
+		//Tests NotMember
+		Member m = null;
+		for(Member membreTest : members ) {
+			//on teste si le membre existe
+			if (membreTest.getPseudo().trim().toLowerCase().equals(pseudo.trim().toLowerCase())) {
+				m = membreTest;
 			}
-			//test si le membre est pr≈Ωsent dans la liste
-			if (m == null) throw new NotMember("Not member : Membre non pr≈Ωsent"); 
-			if(!m.isPassword(password)) throw new NotMember("Password erron≈Ω");
-			//Test NotItem
-			Item j = null;
+		}
+		//test si le membre est pr≈Ωsent dans la liste
+		if (m == null) throw new NotMember("Not member : Membre non pr≈Ωsent"); 
+		if(!m.isPassword(password)) throw new NotMember("Password erron≈Ω");
+		//Test NotItem
+		Item j = null;
+		if(type.trim().toLowerCase().equals("Book")){
 			for(Item i : items){
 				if(i instanceof ItemBook){
 					if(((ItemBook) i).getTitre().trim().toLowerCase().equals(titre.trim().toLowerCase())){
 						j = i;
 					}
 				}
+			}
+		}
+		else{
+			for(Item i : items){
 				if(i instanceof ItemFilm){
 					if(((ItemFilm) i).getTitre().trim().toLowerCase().equals(titre.trim().toLowerCase())){
 						j = i;
 					}
 				}
 			}
-			if(j==null) throw new NotItem("Pas d'item correspondant");
-			//Tests NotReview
-			if(!j.isReview(login)) throw new NotReview("Aucun avis correspondant");
-			//Récupération du review concerné
-			Review r = j.getReview(login);
-			//Ajout de l'avis dans la liste d'opinions
-			r.addOpinion(m, note);
-			//Mise à jour du karma du membre
-			m.updateKarma();
-			//Mise à jour de la note des items notés par le membre
-			for(Item i : items){
-				if(i.isReview(login))
-					i.updateNote();
-			}
 		}
+		if(j==null) throw new NotItem("Pas d'item correspondant");
+		//Tests NotReview
+		if(!j.isReview(login)) throw new NotReview("Aucun avis correspondant");
+		//Récupération du review concerné
+		Review r = j.getReview(login);
+		//Ajout de l'avis dans la liste d'opinions
+		r.addOpinion(m, note);
+		//Mise à jour du karma du membre
+		m.updateKarma();
+		//Mise à jour de la note des items notés par le membre
+		for(Item i : items){
+			if(i.isReview(login))
+				i.updateNote();
+		}
+		return j.getMoyenne();
+	}
 
 
 }

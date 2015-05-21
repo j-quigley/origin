@@ -13,16 +13,18 @@ public class Opinion {
 		note=note_;
 	}
 
-	public static boolean testBadEntry(String pseudo, String password,String titre, String login, float note){
+	public static boolean testBadEntry(String pseudo, String password,String type,String titre, String login, float note){
 		if(pseudo == null) return true;
 		if(password == null) return true;
 		if(titre == null) return true;
 		if(login == null) return true;
+		if(type == null) return true;
 		if(pseudo.trim().length() < 1) return true;
 		if(password.trim().length() < 4) return true;
 		if(login.trim().length() < 1) return true;
 		if(titre.trim().length() < 1) return true;
-		if((note <= 0) || (note > 5)) return true;
+		if((note <= 0) || (note > 10)) return true;
+		if((!type.trim().toLowerCase().equals("film"))||(!type.trim().toLowerCase().equals("book"))) return true;
 		return false;
 	}
 

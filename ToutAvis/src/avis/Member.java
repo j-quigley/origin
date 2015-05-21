@@ -2,6 +2,7 @@ package avis;
 
 import exception.BadEntry;
 import java.util.Collection;
+import java.util.LinkedList;
 
 
 public class Member {
@@ -38,6 +39,7 @@ public class Member {
 		password = password_;
 		profil = profil_; 
 		karma = 1;
+		reviews = new LinkedList<Review>();
 	}
 	
 	public boolean isPassword(String pwd){
@@ -73,9 +75,16 @@ public class Member {
 		 * @uml.property  name="reviews"
 		 * @uml.associationEnd  multiplicity="(0 -1)" inverse="member:avis.Review"
 		 */
-		private Collection<Review> reviews;
+		private LinkedList<Review> reviews;
 
-
+		public void addReview(Review r){
+			reviews.add(r);
+		}
+		
+		public void removeReview(Review r){
+			reviews.remove(r);
+		}
+		
 		/**
 		 * Mesure la qualité des reviews émises par le membre
 		 * @uml.property  name="karma"

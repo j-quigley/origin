@@ -6,7 +6,7 @@ import java.util.LinkedList;
 
 public abstract class Item {
 
-	public float note;
+	private float note;
 	/** 
 	 * @uml.property name="reviews"
 	 * @uml.associationEnd multiplicity="(0 -1)" inverse="item:avis.Review"
@@ -60,10 +60,13 @@ public abstract class Item {
 	}
 	
 	public void updateNote(){
+		note = 0;
 		float moy = 0;
+		float divide = 0;
 		for(Review r : reviews){
 			moy =+ r.getNote()*r.getMember().getKarma();
+			divide =+ r.getMember().getKarma();
 		}
-		note = moy / reviews.size();
+		note = moy / divide;
 	}
 }
