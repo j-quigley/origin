@@ -22,7 +22,7 @@ public class Opinion {
 		if(password.trim().length() < 4) return true;
 		if(login.trim().length() < 1) return true;
 		if(titre.trim().length() < 1) return true;
-		if((note < 0) || (note > 5)) return true;
+		if((note <= 0) || (note > 5)) return true;
 		return false;
 	}
 

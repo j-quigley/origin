@@ -21,6 +21,7 @@ public abstract class Item {
 	public Item(Member author_){
 		author = author_;
 		reviews = new LinkedList<Review>();
+		note = -1;
 	}
 	
 	public float getMoyenne(){

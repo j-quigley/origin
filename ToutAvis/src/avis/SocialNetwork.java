@@ -355,6 +355,7 @@ public class SocialNetwork {
 						Review newReview = new Review(m,note,commentaire);// creation d'un nouveau review
 						((ItemFilm) reviewedFilm).addReview(newReview);// ajout de la nouvelle review.
 					}
+					reviewedFilm.updateNote();
 					note = reviewedFilm.getMoyenne();// on stock la moyenne dans note
 					if(note<0.0f)// si note inferieure...
 						note = 0.0f;// note est nulle
@@ -433,6 +434,7 @@ public class SocialNetwork {
 							Review newReview = new Review(m,note,commentaire);// creation d'un nouveau review
 							((ItemBook) reviewedBook).addReview(newReview);// ajout de la nouvelle review.
 						}
+						reviewedBook.updateNote();
 						note = reviewedBook.getMoyenne();// on stock la moyenne dans note
 						if(note<0.0f)// si note inferieure...
 							note = 0.0f;// note est nulle
@@ -507,8 +509,11 @@ public class SocialNetwork {
 			r.addOpinion(m, note);
 			//Mise ˆ jour du karma du membre
 			m.updateKarma();
-			//Mise ˆ jour de la note de l'item
-			j.updateNote();
+			//Mise ˆ jour de la note des items notŽs par le membre
+			for(Item i : items){
+				if(i.isReview(login))
+					i.updateNote();
+			}
 		}
 
 

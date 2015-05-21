@@ -144,7 +144,7 @@ public class TestsReviewItemFilm {
 		Moyenne moyenne = new Moyenne();
 		moyenne.value = 0.0f;
 		
-		// <=> fiche numéro 7
+		// <=> fiche numéro 9
 
 
 		// tentative d'ajout de membres avec entrées "incorrectes"
@@ -167,7 +167,7 @@ public class TestsReviewItemFilm {
 		nbErreurs += reviewItemFilmBadEntryTest ( sn, moyenne, "jacques", "aaaa", "La biere ",7.0f,"Oh no", "7.8", "L'ajout d'une opinion dont la note est superieure a 5 est accepté");
 
 
-		// <=> fiche numéro 8
+		// <=> fiche numéro 10
 
 		// ajout de 3 opinions avec entrées "correctes"
 
