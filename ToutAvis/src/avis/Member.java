@@ -94,7 +94,7 @@ public class Member {
 		public void updateKarma(){
 			float moy = 0;
 			for(Review r : reviews){
-				moy =+ r.getNote();
+				moy = moy + r.getNote();
 			}
 			moy = moy / reviews.size();
 			karma = moy / 5;

@@ -63,8 +63,8 @@ public abstract class Item {
 		float moy = 0;
 		float divide = 0;
 		for(Review r : reviews){
-			moy =+ r.getNote()*r.getMember().getKarma();
-			divide =+ r.getMember().getKarma();
+			moy = moy + r.getNote()*r.getMember().getKarma();
+			divide = divide + r.getMember().getKarma();
 		}
 		note = moy / divide;
 	}
