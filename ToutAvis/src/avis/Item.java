@@ -21,7 +21,7 @@ public abstract class Item {
 	public Item(Member author_){
 		author = author_;
 		reviews = new LinkedList<Review>();
-		note = -1;
+		note = 0;
 	}
 	
 	public float getMoyenne(){
@@ -37,7 +37,7 @@ public abstract class Item {
 	
 	public boolean isReview(String login){
 		for(Review r : reviews){
-			if(r.getMember().getPseudo().equals(login))
+			if(r.getMember().getPseudo().trim().equalsIgnoreCase(login))
 				return true;
 		}
 		return false;
@@ -60,7 +60,6 @@ public abstract class Item {
 	}
 	
 	public void updateNote(){
-		note = 0;
 		float moy = 0;
 		float divide = 0;
 		for(Review r : reviews){

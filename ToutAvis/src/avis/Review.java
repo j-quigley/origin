@@ -56,6 +56,7 @@ public class Review {
 		author = author_;
 		note=note_;
 		commentaire=commentaire_; 
+		opinions = new LinkedList<Opinion>();
 	}
 	
 	public String toString(){

@@ -47,7 +47,7 @@ public class Member {
 	}
 
 	public String toString(){
-		return "Pseudo : "+pseudo+ " profil : "+profil;
+		return "Pseudo : "+pseudo+ " profil : "+profil + " karma : "+karma;
 	}
 
 			

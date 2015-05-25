@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<editmodel:ClassDiagramEditModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:editmodel="editmodel.xmi" xmlns:options="options.xmi" name="ToutAvis" size="1024,573" id="avis" metadata="uml2-1.0" initialized="true" scrolledY="-5" tag="1000" key="32303037303533312D3130303020546F7574417669732F6A6F6E617468616E">
-  <children xsi:type="editmodel:ClassEditModel" name="SocialNetwork" location="285,4" size="113,265" id="avis/SocialNetwork" runTimeClassModel="addItemFilm(Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;I),reviewOpinion(Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;F),nbMembers(),reviewItemBook(Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;FLjava.lang.String;),SocialNetwork(),nbBooks(),nbFilms(),addMember(Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;),reviewItemFilm(Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;FLjava.lang.String;),consultItems(Ljava.lang.String;),addItemBook(Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;I),toString()">
+<editmodel:ClassDiagramEditModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:editmodel="editmodel.xmi" xmlns:options="options.xmi" name="ToutAvis" size="1024,573" id="avis" metadata="uml2-1.0" initialized="true" scrolledY="-2" tag="1000" key="32303037303533312D3130303020546F7574417669732F6A6F6E617468616E">
+  <children xsi:type="editmodel:ClassEditModel" name="SocialNetwork" location="165,0" size="113,265" id="avis/SocialNetwork" runTimeClassModel="addItemFilm(Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;I),nbMembers(),reviewItemBook(Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;FLjava.lang.String;),SocialNetwork(),reviewOpinion(Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;F),nbBooks(),nbFilms(),addMember(Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;),reviewItemFilm(Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;FLjava.lang.String;),consultItems(Ljava.lang.String;),addItemBook(Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;I),toString()">
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
     <children xsi:type="editmodel:CompartmentEditModel" size="84,216">
       <children xsi:type="editmodel:MethodEditModel" name="SocialNetwork" id="avis/SocialNetwork#SocialNetwork()"/>
@@ -14,49 +14,51 @@
       <children xsi:type="editmodel:MethodEditModel" name="reviewItemBook" id="avis/SocialNetwork#reviewItemBook(Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;FLjava.lang.String;)"/>
       <children xsi:type="editmodel:MethodEditModel" name="reviewItemFilm" id="avis/SocialNetwork#reviewItemFilm(Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;FLjava.lang.String;)"/>
       <children xsi:type="editmodel:MethodEditModel" name="toString" id="avis/SocialNetwork#toString()"/>
-      <children xsi:type="editmodel:MethodEditModel" name="reviewOpinion" id="avis/SocialNetwork#reviewOpinionFilm(Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="reviewOpinion" id="avis/SocialNetwork#reviewOpinion(Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;F)"/>
     </children>
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
     <sourceConnections xsi:type="editmodel:AssociationEditModel" autoLocated="true" id="avis/Member@members+avis/SocialNetwork@socialNetwork" source="//@children.0" target="//@children.4" targetEnd="//@children.0/@sourceConnections.0/@children.1" label="//@children.0/@sourceConnections.0/@children.2" sourceEnd="//@children.0/@sourceConnections.0/@children.0" connectionRouterKind="Manhattan">
-      <children xsi:type="editmodel:AssociationEndEditModel" name="socialNetwork" location="113,90" id="avis/Member@members+avis/SocialNetwork@socialNetwork|avis/SocialNetwork#socialNetwork" attachSource="true"/>
-      <children xsi:type="editmodel:AssociationEndEditModel" name="members" location="0,94" id="avis/Member@members+avis/SocialNetwork@socialNetwork|avis/Member#members" multiplicityLabel="//@children.0/@sourceConnections.0/@children.1/@children.1" roleLabel="//@children.0/@sourceConnections.0/@children.1/@children.0" navigable="true">
-        <children xsi:type="editmodel:LabelEditModel" name=" - members" location="576,77" size="42,10" anchorKind="LastPart"/>
-        <children xsi:type="editmodel:LabelEditModel" name="*" location="615,101" size="3,10" anchorKind="LastPart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="socialNetwork" location="113,132" id="avis/Member@members+avis/SocialNetwork@socialNetwork|avis/SocialNetwork#socialNetwork" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="members" location="0,132" id="avis/Member@members+avis/SocialNetwork@socialNetwork|avis/Member#members" multiplicityLabel="//@children.0/@sourceConnections.0/@children.1/@children.1" roleLabel="//@children.0/@sourceConnections.0/@children.1/@children.0" navigable="true">
+        <children xsi:type="editmodel:LabelEditModel" name=" - members" location="476,115" size="42,10" anchorKind="LastPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="*" location="515,139" size="3,10" anchorKind="LastPart"/>
       </children>
       <children xsi:type="editmodel:WireLabelEditModel" size="0,10" anchorKind="MiddlePart"/>
     </sourceConnections>
     <sourceConnections xsi:type="editmodel:AssociationEditModel" autoLocated="true" id="avis/Item@items+avis/SocialNetwork@socialNetwork" source="//@children.0" target="//@children.1" targetEnd="//@children.0/@sourceConnections.1/@children.1" label="//@children.0/@sourceConnections.1/@children.2" sourceEnd="//@children.0/@sourceConnections.1/@children.0" connectionRouterKind="Manhattan">
-      <children xsi:type="editmodel:AssociationEndEditModel" name="socialNetwork" location="113,235" id="avis/Item@items+avis/SocialNetwork@socialNetwork|avis/SocialNetwork#socialNetwork" attachSource="true"/>
-      <children xsi:type="editmodel:AssociationEndEditModel" name="items" location="0,29" id="avis/Item@items+avis/SocialNetwork@socialNetwork|avis/Item#items" multiplicityLabel="//@children.0/@sourceConnections.1/@children.1/@children.1" roleLabel="//@children.0/@sourceConnections.1/@children.1/@children.0" navigable="true">
-        <children xsi:type="editmodel:LabelEditModel" name=" - items" location="460,222" size="28,10" anchorKind="LastPart"/>
-        <children xsi:type="editmodel:LabelEditModel" name="*" location="485,246" size="3,10" anchorKind="LastPart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="socialNetwork" location="113,222" id="avis/Item@items+avis/SocialNetwork@socialNetwork|avis/SocialNetwork#socialNetwork" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="items" location="0,42" id="avis/Item@items+avis/SocialNetwork@socialNetwork|avis/Item#items" multiplicityLabel="//@children.0/@sourceConnections.1/@children.1/@children.1" roleLabel="//@children.0/@sourceConnections.1/@children.1/@children.0" navigable="true">
+        <children xsi:type="editmodel:LabelEditModel" name=" - items" location="325,205" size="28,10" anchorKind="LastPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="*" location="350,229" size="3,10" anchorKind="LastPart"/>
       </children>
       <children xsi:type="editmodel:WireLabelEditModel" size="0,10" anchorKind="MiddlePart"/>
     </sourceConnections>
     <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
   </children>
-  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.0/@sourceConnections.1 //@children.5/@sourceConnections.0 //@children.2/@sourceConnections.0 //@children.3/@sourceConnections.0" name="Item" location="495,210" size="102,157" id="avis/Item" runTimeClassModel="Item(Lavis.Member;),removeReview(Lavis.Review;),addOpinion(Ljava.lang.String;F),getMoyenne(),isReview(Ljava.lang.String;),addReview(Lavis.Review;)">
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.0/@sourceConnections.1 //@children.5/@sourceConnections.0 //@children.2/@sourceConnections.0 //@children.3/@sourceConnections.0" name="Item" location="360,180" size="102,193" id="avis/Item" runTimeClassModel="Item(Lavis.Member;),removeReview(Lavis.Review;),getMoyenne(),isReview(Ljava.lang.String;),addOpinion(Lavis.Member;F),addReview(Lavis.Review;),updateNote(),getReview(Ljava.lang.String;)">
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
-    <children xsi:type="editmodel:CompartmentEditModel" size="79,108">
+    <children xsi:type="editmodel:CompartmentEditModel" size="79,144">
       <children xsi:type="editmodel:MethodEditModel" name="Item" id="avis/Item#Item(Lavis.Member;)"/>
       <children xsi:type="editmodel:MethodEditModel" name="removeReview" id="avis/Item#removeReview(Lavis.Review;)"/>
       <children xsi:type="editmodel:MethodEditModel" name="getMoyenne" id="avis/Item#getMoyenne()"/>
       <children xsi:type="editmodel:MethodEditModel" name="addReview" id="avis/Item#addReview(Lavis.Review;)"/>
       <children xsi:type="editmodel:MethodEditModel" name="isReview" id="avis/Item#isReview(Ljava.lang.String;)"/>
       <children xsi:type="editmodel:MethodEditModel" name="addOpinion" id="avis/Item#addOpinion(Lavis.Member;F)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="updateNote" id="avis/Item#updateNote()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getReview" id="avis/Item#getReview(Ljava.lang.String;)"/>
     </children>
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
     <sourceConnections xsi:type="editmodel:AssociationEditModel" autoLocated="true" id="avis/Member@author+avis/Item@item" source="//@children.1" target="//@children.4" targetEnd="//@children.1/@sourceConnections.0/@children.1" label="//@children.1/@sourceConnections.0/@children.2" sourceEnd="//@children.1/@sourceConnections.0/@children.0" connectionRouterKind="Manhattan">
-      <children xsi:type="editmodel:AssociationEndEditModel" name="item" location="92,0" id="avis/Member@author+avis/Item@item|avis/Item#item" attachSource="true"/>
-      <children xsi:type="editmodel:AssociationEndEditModel" name="author" location="0,176" id="avis/Member@author+avis/Item@item|avis/Member#author" multiplicityLabel="//@children.1/@sourceConnections.0/@children.1/@children.1" roleLabel="//@children.1/@sourceConnections.0/@children.1/@children.0" navigable="true">
-        <children xsi:type="editmodel:LabelEditModel" name=" # author" location="585,159" size="33,10" anchorKind="LastPart"/>
-        <children xsi:type="editmodel:LabelEditModel" name="1" location="613,183" size="5,10" anchorKind="LastPart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="item" location="102,42" id="avis/Member@author+avis/Item@item|avis/Item#item" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="author" location="0,222" id="avis/Member@author+avis/Item@item|avis/Member#author" multiplicityLabel="//@children.1/@sourceConnections.0/@children.1/@children.1" roleLabel="//@children.1/@sourceConnections.0/@children.1/@children.0" navigable="true">
+        <children xsi:type="editmodel:LabelEditModel" name=" # author" location="485,205" size="33,10" anchorKind="LastPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="1" location="513,229" size="5,10" anchorKind="LastPart"/>
       </children>
       <children xsi:type="editmodel:WireLabelEditModel" size="0,10" anchorKind="MiddlePart"/>
     </sourceConnections>
     <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
   </children>
-  <children xsi:type="editmodel:ClassEditModel" name="ItemFilm" location="292,360" size="106,193" id="avis/ItemFilm" runTimeClassModel="ItemFilm(Lavis.Member;Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;I),genre,testBadEntry(Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;I),scenariste,duree,realisateur,titre,toString()">
+  <children xsi:type="editmodel:ClassEditModel" name="ItemFilm" location="195,330" size="106,211" id="avis/ItemFilm" runTimeClassModel="ItemFilm(Lavis.Member;Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;I),genre,testBadEntry(Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;I),getGenre(),titre,toString()">
     <children xsi:type="editmodel:CompartmentEditModel" size="83,90">
       <children xsi:type="editmodel:AttributeEditModel" name="duree" id="avis/ItemFilm#duree"/>
       <children xsi:type="editmodel:AttributeEditModel" name="genre" id="avis/ItemFilm#genre"/>
@@ -64,64 +66,71 @@
       <children xsi:type="editmodel:AttributeEditModel" name="scenariste" id="avis/ItemFilm#scenariste"/>
       <children xsi:type="editmodel:AttributeEditModel" name="titre" id="avis/ItemFilm#titre"/>
     </children>
-    <children xsi:type="editmodel:CompartmentEditModel" size="73,54">
+    <children xsi:type="editmodel:CompartmentEditModel" size="73,72">
       <children xsi:type="editmodel:MethodEditModel" name="testBadEntry" id="avis/ItemFilm#testBadEntry(Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;I)"/>
       <children xsi:type="editmodel:MethodEditModel" name="ItemFilm" id="avis/ItemFilm#ItemFilm(Lavis.Member;Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;I)"/>
       <children xsi:type="editmodel:MethodEditModel" name="toString" id="avis/ItemFilm#toString()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getGenre" id="avis/ItemFilm#getGenre()"/>
     </children>
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
     <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" id="avis/Item&lt;-avis/ItemFilm" source="//@children.2" target="//@children.1" targetEnd="//@children.2/@sourceConnections.0/@children.1" sourceEnd="//@children.2/@sourceConnections.0/@children.0" connectionRouterKind="Manual">
-      <children xsi:type="editmodel:AssociationEndEditModel" location="106,3" attachSource="true"/>
-      <children xsi:type="editmodel:AssociationEndEditModel" location="0,153"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="106,21" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="0,171"/>
     </sourceConnections>
     <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
   </children>
-  <children xsi:type="editmodel:ClassEditModel" name="ItemBook" location="638,360" size="96,175" id="avis/ItemBook" runTimeClassModel="genre,ItemBook(Lavis.Member;Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;I),testBadEntry(Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;I),auteur,nbPages,titre,toString()">
+  <children xsi:type="editmodel:ClassEditModel" name="ItemBook" location="570,339" size="96,193" id="avis/ItemBook" runTimeClassModel="genre,ItemBook(Lavis.Member;Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;I),getGenre(),testBadEntry(Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;I),titre,toString()">
     <children xsi:type="editmodel:CompartmentEditModel" size="69,72">
       <children xsi:type="editmodel:AttributeEditModel" name="auteur" location="29,40" id="avis/ItemBook#auteur"/>
       <children xsi:type="editmodel:AttributeEditModel" name="genre" id="avis/ItemBook#genre"/>
       <children xsi:type="editmodel:AttributeEditModel" name="nbPages" id="avis/ItemBook#nbPages"/>
       <children xsi:type="editmodel:AttributeEditModel" name="titre" id="avis/ItemBook#titre"/>
     </children>
-    <children xsi:type="editmodel:CompartmentEditModel" size="73,54">
+    <children xsi:type="editmodel:CompartmentEditModel" size="73,72">
       <children xsi:type="editmodel:MethodEditModel" name="testBadEntry" id="avis/ItemBook#testBadEntry(Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;I)"/>
       <children xsi:type="editmodel:MethodEditModel" name="ItemBook" id="avis/ItemBook#ItemBook(Lavis.Member;Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;I)"/>
       <children xsi:type="editmodel:MethodEditModel" name="toString" id="avis/ItemBook#toString()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getGenre" id="avis/ItemBook#getGenre()"/>
     </children>
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
     <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" id="avis/Item&lt;-avis/ItemBook" source="//@children.3" target="//@children.1" targetEnd="//@children.3/@sourceConnections.0/@children.1" sourceEnd="//@children.3/@sourceConnections.0/@children.0" connectionRouterKind="Manual">
-      <children xsi:type="editmodel:AssociationEndEditModel" location="0,3" attachSource="true"/>
-      <children xsi:type="editmodel:AssociationEndEditModel" location="102,153"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="0,16" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="102,175"/>
     </sourceConnections>
     <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
   </children>
-  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.0/@sourceConnections.0 //@children.1/@sourceConnections.0 //@children.6/@sourceConnections.0" name="Member" location="625,0" size="104,186" id="avis/Member" runTimeClassModel="isPassword(Ljava.lang.String;),Member(Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;),pseudo,testBadEntry(Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;),toString()">
-    <children xsi:type="editmodel:CompartmentEditModel" size="81,54">
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.0/@sourceConnections.0 //@children.1/@sourceConnections.0 //@children.6/@sourceConnections.0" name="Member" location="525,0" size="104,265" id="avis/Member" runTimeClassModel="karma,isPassword(Ljava.lang.String;),Member(Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;),getKarma(),removeReview(Lavis.Review;),pseudo,addReview(Lavis.Review;),testBadEntry(Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;),updateKarma(),toString()">
+    <children xsi:type="editmodel:CompartmentEditModel" size="81,72">
       <children xsi:type="editmodel:AttributeEditModel" name="password" id="avis/Member#password"/>
       <children xsi:type="editmodel:AttributeEditModel" name="profil" id="avis/Member#profil"/>
       <children xsi:type="editmodel:AttributeEditModel" name="pseudo" id="avis/Member#pseudo"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="karma" id="avis/Member#karma"/>
     </children>
-    <children xsi:type="editmodel:CompartmentEditModel" size="73,72">
+    <children xsi:type="editmodel:CompartmentEditModel" size="79,144">
       <children xsi:type="editmodel:MethodEditModel" name="Member" id="avis/Member#Member(Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;)"/>
       <children xsi:type="editmodel:MethodEditModel" name="isPassword" id="avis/Member#isPassword(Ljava.lang.String;)"/>
       <children xsi:type="editmodel:MethodEditModel" name="testBadEntry" id="avis/Member#testBadEntry(Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;)"/>
       <children xsi:type="editmodel:MethodEditModel" name="toString" id="avis/Member#toString()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getKarma" id="avis/Member#getKarma()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="updateKarma" id="avis/Member#updateKarma()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="addReview" id="avis/Member#addReview(Lavis.Review;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="removeReview" id="avis/Member#removeReview(Lavis.Review;)"/>
     </children>
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
     <sourceConnections xsi:type="editmodel:AssociationEditModel" autoLocated="true" id="avis/Member@member+avis/Review@reviews" source="//@children.4" target="//@children.5" targetEnd="//@children.4/@sourceConnections.0/@children.1" label="//@children.4/@sourceConnections.0/@children.2" sourceEnd="//@children.4/@sourceConnections.0/@children.0" connectionRouterKind="Manhattan">
-      <children xsi:type="editmodel:AssociationEndEditModel" name="member" location="104,176" id="avis/Member@member+avis/Review@reviews|avis/Member#member" attachSource="true" multiplicityLabel="//@children.4/@sourceConnections.0/@children.0/@children.1" roleLabel="//@children.4/@sourceConnections.0/@children.0/@children.0" navigable="true">
-        <children xsi:type="editmodel:LabelEditModel" name=" - member" location="736,159" size="38,10" anchorKind="FirstPart"/>
-        <children xsi:type="editmodel:LabelEditModel" name="1" location="736,183" size="5,10" anchorKind="FirstPart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="member" location="104,237" id="avis/Member@member+avis/Review@reviews|avis/Member#member" attachSource="true" multiplicityLabel="//@children.4/@sourceConnections.0/@children.0/@children.1" roleLabel="//@children.4/@sourceConnections.0/@children.0/@children.0" navigable="true">
+        <children xsi:type="editmodel:LabelEditModel" name=" - member" location="636,220" size="38,10" anchorKind="FirstPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="1" location="636,244" size="5,10" anchorKind="FirstPart"/>
       </children>
-      <children xsi:type="editmodel:AssociationEndEditModel" name="reviews" location="10,0" id="avis/Member@member+avis/Review@reviews|avis/Review#reviews" multiplicityLabel="//@children.4/@sourceConnections.0/@children.1/@children.1" roleLabel="//@children.4/@sourceConnections.0/@children.1/@children.0" navigable="true">
-        <children xsi:type="editmodel:LabelEditModel" name=" - reviews" location="767,193" size="36,10" anchorKind="LastPart"/>
-        <children xsi:type="editmodel:LabelEditModel" name="*" location="750,193" size="3,10" anchorKind="LastPart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="reviews" location="0,27" id="avis/Member@member+avis/Review@reviews|avis/Review#reviews" multiplicityLabel="//@children.4/@sourceConnections.0/@children.1/@children.1" roleLabel="//@children.4/@sourceConnections.0/@children.1/@children.0" navigable="true">
+        <children xsi:type="editmodel:LabelEditModel" name=" - reviews" location="677,220" size="36,10" anchorKind="LastPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="*" location="710,244" size="3,10" anchorKind="LastPart"/>
       </children>
       <children xsi:type="editmodel:WireLabelEditModel" size="0,10" anchorKind="MiddlePart"/>
     </sourceConnections>
     <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
   </children>
-  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.4/@sourceConnections.0" name="Review" location="750,210" size="116,157" id="avis/Review" runTimeClassModel="addOpinion(F),Review(Lavis.Member;FLjava.lang.String;),commentaire,note,toString(),testBadEntry(Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;FLjava.lang.String;)">
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.4/@sourceConnections.0" name="Review" location="720,210" size="116,157" id="avis/Review" runTimeClassModel="Review(Lavis.Member;FLjava.lang.String;),addOpinion(Lavis.Member;F),commentaire,note,testBadEntry(Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;FLjava.lang.String;),toString()">
     <children xsi:type="editmodel:CompartmentEditModel" size="93,36">
       <children xsi:type="editmodel:AttributeEditModel" name="commentaire" id="avis/Review#commentaire"/>
       <children xsi:type="editmodel:AttributeEditModel" name="note" id="avis/Review#note"/>
@@ -135,34 +144,38 @@
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
     <sourceConnections xsi:type="editmodel:AssociationEditModel" autoLocated="true" id="avis/Review@reviews+avis/Item@item" source="//@children.5" target="//@children.1" targetEnd="//@children.5/@sourceConnections.0/@children.1" label="//@children.5/@sourceConnections.0/@children.2" sourceEnd="//@children.5/@sourceConnections.0/@children.0" connectionRouterKind="Manhattan">
       <children xsi:type="editmodel:AssociationEndEditModel" name="reviews" location="0,78" id="avis/Review@reviews+avis/Item@item|avis/Review#reviews" attachSource="true" multiplicityLabel="//@children.5/@sourceConnections.0/@children.0/@children.1" roleLabel="//@children.5/@sourceConnections.0/@children.0/@children.0" navigable="true">
-        <children xsi:type="editmodel:LabelEditModel" name=" # reviews" location="706,271" size="37,10" anchorKind="FirstPart"/>
-        <children xsi:type="editmodel:LabelEditModel" name="*" location="740,295" size="3,10" anchorKind="FirstPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name=" # reviews" location="676,271" size="37,10" anchorKind="FirstPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="*" location="710,295" size="3,10" anchorKind="FirstPart"/>
       </children>
-      <children xsi:type="editmodel:AssociationEndEditModel" name="item" location="102,78" id="avis/Review@reviews+avis/Item@item|avis/Item#item"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="item" location="102,108" id="avis/Review@reviews+avis/Item@item|avis/Item#item"/>
       <children xsi:type="editmodel:WireLabelEditModel" size="0,10" anchorKind="MiddlePart"/>
     </sourceConnections>
     <sourceConnections xsi:type="editmodel:AssociationEditModel" autoLocated="true" id="avis/Opinion@opinions+avis/Review@review" source="//@children.5" target="//@children.6" targetEnd="//@children.5/@sourceConnections.1/@children.1" label="//@children.5/@sourceConnections.1/@children.2" sourceEnd="//@children.5/@sourceConnections.1/@children.0" connectionRouterKind="Manhattan">
-      <children xsi:type="editmodel:AssociationEndEditModel" name="review" location="116,10" id="avis/Opinion@opinions+avis/Review@review|avis/Review#review" attachSource="true"/>
-      <children xsi:type="editmodel:AssociationEndEditModel" name="opinions" location="10,85" id="avis/Opinion@opinions+avis/Review@review|avis/Opinion#opinions" multiplicityLabel="//@children.5/@sourceConnections.1/@children.1/@children.1" roleLabel="//@children.5/@sourceConnections.1/@children.1/@children.0" navigable="true">
-        <children xsi:type="editmodel:LabelEditModel" name=" - opinions" location="902,197" size="39,10" anchorKind="LastPart"/>
-        <children xsi:type="editmodel:LabelEditModel" name="*" location="885,197" size="3,10" anchorKind="LastPart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="review" location="116,17" id="avis/Opinion@opinions+avis/Review@review|avis/Review#review" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="opinions" location="0,122" id="avis/Opinion@opinions+avis/Review@review|avis/Opinion#opinions" multiplicityLabel="//@children.5/@sourceConnections.1/@children.1/@children.1" roleLabel="//@children.5/@sourceConnections.1/@children.1/@children.0" navigable="true">
+        <children xsi:type="editmodel:LabelEditModel" name=" - opinions" location="839,210" size="39,10" anchorKind="LastPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="*" location="875,234" size="3,10" anchorKind="LastPart"/>
       </children>
       <children xsi:type="editmodel:WireLabelEditModel" size="0,10" anchorKind="MiddlePart"/>
     </sourceConnections>
     <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
   </children>
-  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.5/@sourceConnections.1" name="Opinion" location="885,105" size="96,85" id="avis/Opinion" runTimeClassModel="Opinion(F),testBadEntry(Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;F)">
-    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
-    <children xsi:type="editmodel:CompartmentEditModel" size="73,36">
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.5/@sourceConnections.1" name="Opinion" location="885,105" size="96,139" id="avis/Opinion" runTimeClassModel="getPseudo(),Opinion(Lavis.Member;F),testBadEntry(Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;F),getNote(),note">
+    <children xsi:type="editmodel:CompartmentEditModel" size="56,18">
+      <children xsi:type="editmodel:AttributeEditModel" name="note" id="avis/Opinion#note"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="73,72">
       <children xsi:type="editmodel:MethodEditModel" name="testBadEntry" id="avis/Opinion#testBadEntry(Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;F)"/>
-      <children xsi:type="editmodel:MethodEditModel" name="Opinion" id="avis/Opinion#Opinion()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="Opinion" id="avis/Opinion#Opinion(Lavis.Member;F)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getNote" id="avis/Opinion#getNote()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getPseudo" id="avis/Opinion#getPseudo()"/>
     </children>
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
     <sourceConnections xsi:type="editmodel:AssociationEditModel" autoLocated="true" id="avis/Member@author+avis/Opinion@opinion" source="//@children.6" target="//@children.4" targetEnd="//@children.6/@sourceConnections.0/@children.1" label="//@children.6/@sourceConnections.0/@children.2" sourceEnd="//@children.6/@sourceConnections.0/@children.0" connectionRouterKind="Manhattan">
-      <children xsi:type="editmodel:AssociationEndEditModel" name="opinion" location="0,40" id="avis/Member@author+avis/Opinion@opinion|avis/Opinion#opinion" attachSource="true"/>
-      <children xsi:type="editmodel:AssociationEndEditModel" name="author" location="104,145" id="avis/Member@author+avis/Opinion@opinion|avis/Member#author" multiplicityLabel="//@children.6/@sourceConnections.0/@children.1/@children.1" roleLabel="//@children.6/@sourceConnections.0/@children.1/@children.0" navigable="true">
-        <children xsi:type="editmodel:LabelEditModel" name=" - author" location="736,128" size="32,10" anchorKind="LastPart"/>
-        <children xsi:type="editmodel:LabelEditModel" name="1" location="736,152" size="5,10" anchorKind="LastPart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="opinion" location="0,69" id="avis/Member@author+avis/Opinion@opinion|avis/Opinion#opinion" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="author" location="104,174" id="avis/Member@author+avis/Opinion@opinion|avis/Member#author" multiplicityLabel="//@children.6/@sourceConnections.0/@children.1/@children.1" roleLabel="//@children.6/@sourceConnections.0/@children.1/@children.0" navigable="true">
+        <children xsi:type="editmodel:LabelEditModel" name=" - author" location="636,157" size="32,10" anchorKind="LastPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="1" location="636,181" size="5,10" anchorKind="LastPart"/>
       </children>
       <children xsi:type="editmodel:WireLabelEditModel" size="0,10" anchorKind="MiddlePart"/>
     </sourceConnections>

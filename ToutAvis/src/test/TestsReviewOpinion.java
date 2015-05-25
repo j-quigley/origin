@@ -13,10 +13,6 @@ public class TestsReviewOpinion {
 		public float value;
 	}
 
-	static class Karma{
-		public float value;
-	}
-
 	public static int reviewOpinionBadEntryTest(SocialNetwork sn, Moyenne moyenne, String pseudo, String  pwd, String type, String titre, String login, float note, String idTest, String messErreur){
 		// vï¿½rifie que l'ajout d'une opinion est refusï¿½e (levï¿½e de l'exception BadEntry et pas de modification de sn)
 		// ne fait rien si c'est le cas
@@ -162,6 +158,7 @@ public class TestsReviewOpinion {
 			sn.reviewItemBook("nico", "bbbb", "La biere", 1.0f, "Je prefere le panach�");
 			sn.reviewItemBook("jacques", "aaaa", "Dirac en 0", 2.0f, "Pas terrible");
 			sn.reviewItemBook("nico", "bbbb", "Dirac en 0", 4.8f, "Super film");
+			sn.reviewItemFilm("nico", "bbbb", "La biere", 3.5f, "Bonne adaptation en film");
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -215,19 +212,19 @@ public class TestsReviewOpinion {
 		// tentative d'ajout d'opinion avec parametre couple login/password incohÃ©rent 
 
 		nbTests++;
-		nbErreurs += reviewOpinionNotMemberTest(sn, moyenne, "xx-jacqueslebgdu29-xx", "aaaa","book","La biere","nico",3.0f,"12.5","L'ajout d'une opinion dont le pseudo est inexistant est acceptÃ©");
+		nbErreurs += reviewOpinionNotMemberTest(sn, moyenne, "xx-jacqueslebgdu29-xx", "aaaa","book","La biere","nico",3.0f,"12.6","L'ajout d'une opinion dont le pseudo est inexistant est acceptÃ©");
 		nbTests++;
-		nbErreurs += reviewOpinionNotMemberTest(sn, moyenne, "jacques", "bbbazab", "book","  La BIEre","nico",1.0f,"12.6","L'ajout d'une opinion dont le couple pseudo/password est incohÃ©rent est acceptÃ©");
+		nbErreurs += reviewOpinionNotMemberTest(sn, moyenne, "jacques", "bbbazab", "book","  La BIEre","nico",1.0f,"12.7","L'ajout d'une opinion dont le couple pseudo/password est incohÃ©rent est acceptÃ©");
 
 		// tentative d'ajout d'opinion avec titre de film inexistant
 
 		nbTests++;
-		nbErreurs += reviewOpinionNotItemTest(sn, moyenne, "jacques", "aaaa","book","Le powerpc","nico",3.0f,"12.7","L'ajout d'une opinion avec un titre de film inexistant est acceptÃ©");
+		nbErreurs += reviewOpinionNotItemTest(sn, moyenne, "jacques", "aaaa","book","Le powerpc","nico",3.0f,"12.8","L'ajout d'une opinion avec un titre de film inexistant est acceptÃ©");
 
 		// tentative d'ajout d'opinion avec login de reviewer inexistant
 
 		nbTests++;
-		nbErreurs += reviewOpinionNotReviewTest(sn, moyenne, "jacques", "aaaa","book","La biere","nicoshow",3.0f,"12.8","L'ajout d'une opinion avec un login de reviewer inexistant est acceptÃ©");
+		nbErreurs += reviewOpinionNotReviewTest(sn, moyenne, "jacques", "aaaa","book","La biere","nicoshow",3.0f,"12.9","L'ajout d'une opinion avec un login de reviewer inexistant est acceptÃ©");
 
 
 		// ce n'est pas du test, mais cela peut "rassurer"...

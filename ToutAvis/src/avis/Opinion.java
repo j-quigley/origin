@@ -24,7 +24,7 @@ public class Opinion {
 		if(login.trim().length() < 1) return true;
 		if(titre.trim().length() < 1) return true;
 		if((note <= 0) || (note > 10)) return true;
-		if((!type.trim().toLowerCase().equals("film"))||(!type.trim().toLowerCase().equals("book"))) return true;
+		if((!type.trim().toLowerCase().equals("film"))&&(!type.trim().toLowerCase().equals("book"))) return true;
 		return false;
 	}
 

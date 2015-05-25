@@ -268,17 +268,13 @@ public class SocialNetwork {
 			if(i instanceof ItemFilm){
 				if(((ItemFilm) i).getTitre().trim().toLowerCase().equals(nom.trim().toLowerCase())){
 					note = i.getMoyenne();
-					if(note>=0)
 						result.add("Film trouvŽ : Titre : "+((ItemFilm) i).getTitre()+" genre : "+((ItemFilm) i).getGenre()+" note : "+note);
-					else result.add("Film trouvŽ : Titre : "+((ItemFilm) i).getTitre()+" genre : "+((ItemFilm) i).getGenre());
 				}
 			}
 			if(i instanceof ItemBook){
 				if(((ItemBook) i).getTitre().trim().toLowerCase().equals(nom.trim().toLowerCase())){
 					note = i.getMoyenne();
-					if(note>=0)
 						result.add("Livre trouvŽ : Titre : "+((ItemBook) i).getTitre()+" genre : "+((ItemFilm) i).getGenre()+"note : "+note);
-					else result.add("Livre trouvŽ : Titre : "+((ItemBook) i).getTitre()+" genre : "+((ItemFilm) i).getGenre());
 				}
 			}
 		}
@@ -356,11 +352,10 @@ public class SocialNetwork {
 						Review newReview = new Review(m,note,commentaire);// creation d'un nouveau review
 						((ItemFilm) reviewedFilm).addReview(newReview);// ajout de la nouvelle review.
 						m.removeReview(r1);
+						m.addReview(newReview);
 					}
 					reviewedFilm.updateNote();
 					note = reviewedFilm.getMoyenne();// on stock la moyenne dans note
-					if(note<0.0f)// si note inferieure...
-						note = 0.0f;// note est nulle
 				}		
 			}
 		}	
@@ -437,11 +432,10 @@ public class SocialNetwork {
 						Review newReview = new Review(m,note,commentaire);// creation d'un nouveau review
 						((ItemBook) reviewedBook).addReview(newReview);// ajout de la nouvelle review.
 						m.removeReview(r1);
+						m.addReview(newReview);
 					}
 					reviewedBook.updateNote();
 					note = reviewedBook.getMoyenne();// on stock la moyenne dans note
-					if(note<0.0f)// si note inferieure...
-						note = 0.0f;// note est nulle
 				}		
 			}
 		}	
@@ -492,7 +486,7 @@ public class SocialNetwork {
 		if(!m.isPassword(password)) throw new NotMember("Password erronŽ");
 		//Test NotItem
 		Item j = null;
-		if(type.trim().toLowerCase().equals("Book")){
+		if(type.trim().equalsIgnoreCase("Book")){
 			for(Item i : items){
 				if(i instanceof ItemBook){
 					if(((ItemBook) i).getTitre().trim().toLowerCase().equals(titre.trim().toLowerCase())){
