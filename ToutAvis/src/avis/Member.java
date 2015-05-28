@@ -1,7 +1,5 @@
 package avis;
 
-import exception.BadEntry;
-import java.util.Collection;
 import java.util.LinkedList;
 
 

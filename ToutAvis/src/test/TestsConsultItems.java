@@ -77,30 +77,21 @@ public class TestsConsultItems {
 			sn.addMember("Jacques", "aaaa", "Sexy girl !");
 		}
 		catch(Exception e) {
-			System.out.println("Erreur sur la création d'un membre ... ");
-			System.out.println(sn.toString());
-			System.out.println("0 tests effectué ...");
-			System.exit(1); // On quite ... 
+			System.out.println("Erreur inattendue lors de la création d'un membre");
 		}
 
 		try {
 			sn.addItemBook("Jacques", "aaaa", "Star Wars 8", "Science fiction", "J. J. Abrams", 400);
 		}
 		catch(Exception e) {
-			System.out.println("Erreur sur la création d'un item Book ... ");
-			System.out.println(sn.toString());
-			System.out.println("0 tests effectué ...");
-			System.exit(1); // On quite ... 
+			System.out.println("Erreur inattendue lors de la création d'un ItemBook");
 		}
 
 		try {
 			sn.addItemFilm("Jacques", "aaaa", "Titre", "genre", "realisateur", "scenariste", 2);
 		}
 		catch(Exception e) {
-			System.out.println("Erreur sur la création d'un item Film ... ");
-			System.out.println(sn.toString());
-			System.out.println("0 tests effectué ...");
-			System.exit(1); // On quite ... 
+			System.out.println("Erreur inattendue lors de la création d'un ItemFilm");
 		}
 
 		// tests de reviewItemBook

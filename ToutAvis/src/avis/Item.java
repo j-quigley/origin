@@ -1,6 +1,5 @@
 package avis;
 
-import java.util.Collection;
 import java.util.LinkedList;
 
 

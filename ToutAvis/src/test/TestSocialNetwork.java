@@ -7,8 +7,6 @@ public class TestSocialNetwork {
 	    */
 	   public static void main(String[] args) {
 	      
-	      String nbTests = "" + 0;
-	      String nbErreurs = "" + 0;
 	      String [] resultats = new String[] {"0", "0"};
 	      
 	   
@@ -26,6 +24,14 @@ public class TestSocialNetwork {
 	      
 	      System.out.println("\n\n ***************************************\n");
 
+	      TestsAddItemBook.main(resultats);
+	      
+	      System.out.println("\n\n ***************************************\n");
+	      
+	      TestsConsultItems.main(resultats);
+	      
+	      System.out.println("\n\n ***************************************\n");
+	      
 	      TestsReviewItemFilm.main(resultats);
 	      
 	      System.out.println("\n\n ***************************************\n");

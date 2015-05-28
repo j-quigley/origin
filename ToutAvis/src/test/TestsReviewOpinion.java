@@ -1,6 +1,6 @@
 package test;
 
-import test.TestsReviewItemFilm.Moyenne;
+
 import avis.SocialNetwork;
 import exception.BadEntry;
 import exception.NotItem;
@@ -9,6 +9,8 @@ import exception.NotReview;
 
 public class TestsReviewOpinion {
 
+	//Classe statique utilis�e pour les tests sur la gestion des notes
+	
 	static class Moyenne {
 		public float value;
 	}
@@ -138,7 +140,7 @@ public class TestsReviewOpinion {
 			System.out.println("Exception inattendue levŽe lors de l'utilisation de addMember");
 		}
 
-		//Ajout de deux livres
+		//Ajout de deux livres et d'un film
 
 		try{
 			sn.addItemBook("jacques", "aaaa", "La biere", "V Hugo","Policier",350);
@@ -151,7 +153,7 @@ public class TestsReviewOpinion {
 			System.out.println("Exception inattendue levŽe lors de l'utilisation de addItem");
 		}
 
-		//Ajout de deux livres et d'un film
+		//Ajout d'avis sur les items cr��s
 
 		try{
 			sn.reviewItemBook("jacques", "aaaa", "La biere", 4.5f, "C'est ma passion");
@@ -159,72 +161,85 @@ public class TestsReviewOpinion {
 			sn.reviewItemBook("jacques", "aaaa", "Dirac en 0", 2.0f, "Pas terrible");
 			sn.reviewItemBook("nico", "bbbb", "Dirac en 0", 4.8f, "Super film");
 			sn.reviewItemFilm("nico", "bbbb", "La biere", 3.5f, "Bonne adaptation en film");
+			sn.reviewItemFilm("jacques", "aaaa", "La biere", 4.0f, "Super !");
 		}
 		catch(Exception e){
 			e.printStackTrace();
 			System.out.println("Exception inattendue levŽe lors de l'utilisation de reviewItem");
 		}
 
-		Moyenne moyenne = new Moyenne();
-		moyenne.value = 0.0f;
+		//Cr�ation d'objets moyenne pour tester la bonne gestion des notes
+		
+		Moyenne moyenneBookLaBiere = new Moyenne();
+		moyenneBookLaBiere.value = (4.5f + 1.0f) / 2.0f;
+		Moyenne moyenneBookDirac = new Moyenne();
+		moyenneBookDirac.value = (2.0f+4.8f) / 2.0f;
+		Moyenne moyenneFilmLaBiere = new Moyenne();
+		moyenneFilmLaBiere.value = (3.5f+4.0f)/2.0f;
 
+				
 		// <=> fiche numÃ©ro 11
 
 
 		// tentative d'ajout de membres avec entrÃ©es "incorrectes"
 
 		nbTests++;
-		nbErreurs =+ reviewOpinionBadEntryTest(sn,moyenne,null, "aaaa", "La biere", "book", "nico", 1.0f, "11.1", "L'ajout d'une opinion avec un pseudo non nstanciÃ© est acceptÃ©");
+		nbErreurs =+ reviewOpinionBadEntryTest (sn, moyenneBookLaBiere,null, "aaaa", "La biere", "book", "nico", 1.0f, "11.1", "L'ajout d'une opinion avec un pseudo non nstanciÃ© est acceptÃ©");
 		nbTests++;
-		nbErreurs =+ reviewOpinionBadEntryTest(sn,moyenne," ", "aaaa",  "book","La biere", "nico", 1.0f, "11.2", "L'ajout d'une opinion avec un pseudo ne contenant pas un caracteres, autre que des espaces, est acceptÃ©");
+		nbErreurs =+ reviewOpinionBadEntryTest (sn, moyenneBookLaBiere," ", "aaaa",  "book","La biere", "nico", 1.0f, "11.2", "L'ajout d'une opinion avec un pseudo ne contenant pas un caracteres, autre que des espaces, est acceptÃ©");
 		nbTests++;
-		nbErreurs += reviewOpinionBadEntryTest ( sn, moyenne, "jacques", null, "book","La biere",  "nico", 0.0f, "11.3", "L'ajout d'une opinion dont le password n'est pas instanciÃ© est acceptÃ©");
+		nbErreurs += reviewOpinionBadEntryTest ( sn, moyenneBookLaBiere, "jacques", null, "book","La biere",  "nico", 0.0f, "11.3", "L'ajout d'une opinion dont le password n'est pas instanciÃ© est acceptÃ©");
 		nbTests++;
-		nbErreurs += reviewOpinionBadEntryTest ( sn, moyenne, "jacques","  aa  ", "book",null,  "nico", 0.0f, "11.4","L'ajout d'un membre dont le password ne contient pas au moins 4 caracteres, autre que des espaces de dÃ©but ou de fin, est acceptÃ©");
+		nbErreurs += reviewOpinionBadEntryTest ( sn, moyenneBookLaBiere, "jacques","  aa  ", "book",null,  "nico", 0.0f, "11.4","L'ajout d'un membre dont le password ne contient pas au moins 4 caracteres, autre que des espaces de dÃ©but ou de fin, est acceptÃ©");
 		nbTests++;
-		nbErreurs += reviewOpinionBadEntryTest ( sn, moyenne, "jacques", "aaaa", "book","La biere",  null, 0.0f, "11.5", "L'ajout d'une opinion dont le titre n'est pas instanciÃ© est acceptÃ©");
+		nbErreurs += reviewOpinionBadEntryTest ( sn, moyenneBookLaBiere, "jacques", "aaaa", "book","La biere",  null, 0.0f, "11.5", "L'ajout d'une opinion dont le titre n'est pas instanciÃ© est acceptÃ©");
 		nbTests++;		
-		nbErreurs += reviewOpinionBadEntryTest ( sn, moyenne, "jacques", "aaaa", "book","  ", "nico", 0.0f, "11.6", "L'ajout d'une opinion dont le titre ne contient que des espaces est acceptÃ©");
+		nbErreurs += reviewOpinionBadEntryTest ( sn, moyenneBookLaBiere, "jacques", "aaaa", "book","  ", "nico", 0.0f, "11.6", "L'ajout d'une opinion dont le titre ne contient que des espaces est acceptÃ©");
 		nbTests++;		
-		nbErreurs += reviewOpinionBadEntryTest ( sn, moyenne, "jacques", "aaaa",  "book","La biere ","nico", -3.0f, "11.7", "L'ajout d'une opinion dont la note est negative est acceptÃ©");
+		nbErreurs += reviewOpinionBadEntryTest ( sn, moyenneBookLaBiere, "jacques", "aaaa",  "book","La biere ","nico", -3.0f, "11.7", "L'ajout d'une opinion dont la note est negative est acceptÃ©");
 		nbTests++;		
-		nbErreurs += reviewOpinionBadEntryTest ( sn, moyenne, "jacques", "aaaa", "book", "La biere ", "nico", 15.0f, "11.8", "L'ajout d'une opinion dont la note est superieure a 10 est acceptÃ©");
+		nbErreurs += reviewOpinionBadEntryTest ( sn, moyenneBookLaBiere, "jacques", "aaaa", "book", "La biere ", "nico", 15.0f, "11.8", "L'ajout d'une opinion dont la note est superieure a 10 est acceptÃ©");
 		nbTests++;		
-		nbErreurs += reviewOpinionBadEntryTest ( sn, moyenne, "jacques", "aaaa", null, "La biere ", "nico", 5.0f, "11.9", "L'ajout d'une opinion dont le type n'est pas instanci� est acceptÃ©");
+		nbErreurs += reviewOpinionBadEntryTest ( sn, moyenneBookLaBiere, "jacques", "aaaa", null, "La biere ", "nico", 5.0f, "11.9", "L'ajout d'une opinion dont le type n'est pas instanci� est acceptÃ©");
 		nbTests++;		
-		nbErreurs += reviewOpinionBadEntryTest ( sn, moyenne, "jacques", "aaaa", "   ", "La biere ", "nico", 5.0f, "11.10", "L'ajout d'une opinion dont le type ne contient que des espaces est acceptÃ©");
+		nbErreurs += reviewOpinionBadEntryTest ( sn, moyenneBookLaBiere, "jacques", "aaaa", "   ", "La biere ", "nico", 5.0f, "11.10", "L'ajout d'une opinion dont le type ne contient que des espaces est acceptÃ©");
 
 		// <=> fiche numÃ©ro 12
 
 		// ajout de 5 opinions avec entrÃ©es "correctes"
 
 		nbTests++;
-		nbErreurs += reviewOpinionOKTest (sn, moyenne, "jacques", "aaaa","book","La biere", "nico",1.0f,"12.1");
+		moyenneBookLaBiere.value = (4.5f + 1.0f*0.2f)/1.2f;
+		nbErreurs += reviewOpinionOKTest (sn, moyenneBookLaBiere, "jacques", "aaaa","book","La biere", "nico",1.0f,"12.1");
 		nbTests++;
-		nbErreurs += reviewOpinionOKTest (sn, moyenne, "nico", "bbbb","book","  La BIEre","jacques",1.0f,"12.2");
+		moyenneBookLaBiere.value = (4.5f*0.4f + 1.0f*0.2f)/0.6f;
+		nbErreurs += reviewOpinionOKTest (sn, moyenneBookLaBiere, "nico", "bbbb","book","  La BIEre","jacques",2.0f,"12.2");
 		nbTests++;
-		nbErreurs += reviewOpinionOKTest (sn, moyenne, "jacques", "aaaa","book","la biere","jacques",7.0f,"12.3");
+		moyenneBookLaBiere.value = (4.5f*(0.4f+1.4f)/2.0f + 1.0f*0.2f)/1.1f;
+		nbErreurs += reviewOpinionOKTest (sn, moyenneBookLaBiere, "jacques", "aaaa","book","la biere","jacques",7.0f,"12.3");
 		nbTests++;
-		nbErreurs += reviewOpinionOKTest (sn, moyenne, "nico", "bbbb","book","Dirac en 0","jacques",2.5f,"12.4");
+		moyenneBookDirac.value = (2.0f*0.5f+4.8f) / 1.5f;
+		nbErreurs += reviewOpinionOKTest (sn, moyenneBookDirac, "nico", "bbbb","book","Dirac en 0","jacques",2.5f,"12.4");
 		nbTests++;
-		nbErreurs += reviewOpinionOKTest (sn, moyenne, "jacques", "aaaa","film","La biere","nico",10.0f,"12.5");
+		moyenneFilmLaBiere.value = (3.5f*2.0f+4.0f)/3.0f;
+		nbErreurs += reviewOpinionOKTest (sn, moyenneFilmLaBiere, "jacques", "aaaa","film","La biere","nico",10.0f,"12.5");
 
 		// tentative d'ajout d'opinion avec parametre couple login/password incohÃ©rent 
 
 		nbTests++;
-		nbErreurs += reviewOpinionNotMemberTest(sn, moyenne, "xx-jacqueslebgdu29-xx", "aaaa","book","La biere","nico",3.0f,"12.6","L'ajout d'une opinion dont le pseudo est inexistant est acceptÃ©");
+		nbErreurs += reviewOpinionNotMemberTest(sn, moyenneBookLaBiere, "xx-jacqueslebgdu29-xx", "aaaa","book","La biere","nico",3.0f,"12.6","L'ajout d'une opinion dont le pseudo est inexistant est acceptÃ©");
 		nbTests++;
-		nbErreurs += reviewOpinionNotMemberTest(sn, moyenne, "jacques", "bbbazab", "book","  La BIEre","nico",1.0f,"12.7","L'ajout d'une opinion dont le couple pseudo/password est incohÃ©rent est acceptÃ©");
+		nbErreurs += reviewOpinionNotMemberTest(sn, moyenneBookLaBiere, "jacques", "bbbazab", "book","  La BIEre","nico",1.0f,"12.7","L'ajout d'une opinion dont le couple pseudo/password est incohÃ©rent est acceptÃ©");
 
 		// tentative d'ajout d'opinion avec titre de film inexistant
 
 		nbTests++;
-		nbErreurs += reviewOpinionNotItemTest(sn, moyenne, "jacques", "aaaa","book","Le powerpc","nico",3.0f,"12.8","L'ajout d'une opinion avec un titre de film inexistant est acceptÃ©");
+		nbErreurs += reviewOpinionNotItemTest(sn, moyenneBookLaBiere, "jacques", "aaaa","book","Le powerpc","nico",3.0f,"12.8","L'ajout d'une opinion avec un titre de film inexistant est acceptÃ©");
 
 		// tentative d'ajout d'opinion avec login de reviewer inexistant
 
 		nbTests++;
-		nbErreurs += reviewOpinionNotReviewTest(sn, moyenne, "jacques", "aaaa","book","La biere","nicoshow",3.0f,"12.9","L'ajout d'une opinion avec un login de reviewer inexistant est acceptÃ©");
+		nbErreurs += reviewOpinionNotReviewTest(sn, moyenneBookLaBiere, "jacques", "aaaa","book","La biere","nicoshow",3.0f,"12.9","L'ajout d'une opinion avec un login de reviewer inexistant est acceptÃ©");
 
 
 		// ce n'est pas du test, mais cela peut "rassurer"...

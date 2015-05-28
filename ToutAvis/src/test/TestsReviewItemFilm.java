@@ -199,7 +199,7 @@ public class TestsReviewItemFilm {
 		System.out.println(sn);
 
 		// bilan du test de addMember
-		System.out.println("TestsAddMember :   " + nbErreurs + " erreur(s) / " +  nbTests + " tests effectués");
+		System.out.println("TestsReviewItemFilm :   " + nbErreurs + " erreur(s) / " +  nbTests + " tests effectués");
 
 		// ajouts au bilan en cours si le bilan est passŽ en param�tre
         if ((args != null) && (args.length == 2)) {        

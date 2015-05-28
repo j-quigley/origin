@@ -1,9 +1,7 @@
 package avis;
 
-import java.util.ArrayList;
+
 import java.util.LinkedList;
-
-
 import exception.BadEntry;
 import exception.ItemFilmAlreadyExists;
 import exception.ItemBookAlreadyExists;
@@ -11,7 +9,7 @@ import exception.MemberAlreadyExists;
 import exception.NotItem;
 import exception.NotReview;
 import exception.NotMember;
-import java.util.Collection;
+
 
 /** 
  * @author J. Quigley Y. Maliszewski
@@ -262,6 +260,7 @@ public class SocialNetwork {
 	public LinkedList <String> consultItems(String nom) throws BadEntry {
 		LinkedList<String> result = new LinkedList<String>();
 		//Test BadEntry
+		if(nom==null) throw new BadEntry("Nom non instancié");
 		if(nom.trim().length()<1) throw new BadEntry("Nom incorrect");
 		float note=0;
 		for(Item i : items){
@@ -274,7 +273,7 @@ public class SocialNetwork {
 			if(i instanceof ItemBook){
 				if(((ItemBook) i).getTitre().trim().toLowerCase().equals(nom.trim().toLowerCase())){
 					note = i.getMoyenne();
-						result.add("Livre trouv≈Ω : Titre : "+((ItemBook) i).getTitre()+" genre : "+((ItemFilm) i).getGenre()+"note : "+note);
+						result.add("Livre trouv≈Ω : Titre : "+((ItemBook) i).getTitre()+" genre : "+((ItemBook) i).getGenre()+"note : "+note);
 				}
 			}
 		}
@@ -468,8 +467,34 @@ public class SocialNetwork {
 
 
 	/**
-	 * Permet d'ajouter une opinion à un Review.
+	 * Noter un avis posté précédemment sur un item
+	 * Ajoute une note à l’avis concerné. Le karma de son auteur en est impacté, comme la note globale de l’item
+	 * Si une note de ce membre pré-existe, elle sera modifiée avec la nouvelle valeur
+	 * 
+	 * @param pseudo pseudo du membre √É¬©mettant l'opinion
+	 * @param password son mot de passe
+	 * @param type type de l’item (livre ou film)
+	 * @param titre titre de l’item  concern√É¬©
+	 * @param login pseudo de l’auteur de l’avis à noter
+	 * @param note la note qu'il donne à l’avis
+	 * 
+	 * @throws BadEntry :
+	 * <ul>
+	 *  <li>  si le pseudo n'est pas instanci√É¬© ou a moins de 1 caract√É¬®re autre que des espaces .  </li>
+	 *  <li>  si le password n'est pas instanci√É¬© ou a moins de 4 caract√É¬®res autres que des leadings or trailing blanks. </li>
+	 *  <li>  si le titre n'est pas instanci√É¬© ou a moins de 1 caract√É¬®re autre que des espaces.  </li>
+	 *  <li>  si le type n'est pas instanci√É¬© ou ne correspond pas à « book » ou « film »  </li>
+	 *  <li>  si la note n'est pas comprise entre 0.0 et 10.0. </li>
+	 *  <li>  si le login n'est pas instanci√É¬© ou a moins de 1 caract√É¬®re autre que des espaces .  </li>
+	 * </ul><br>       
+	 * @throws NotMember : si le pseudo n'est pas celui d'un membre ou si le pseudo et le password ne correspondent pas.
+	 * @throws NotItem : si le titre n'est pas le titre d'un item du type recherché.
+	 * @throws NotReview : si le pseudo ne correspond à aucun auteur d’avis sur cet item.
+	 * 
+	 * @return la note moyenne des notes sur cet item
 	 */
+	
+	
 	public float reviewOpinion(String pseudo, String password, String type, String titre, String login, float note)	throws BadEntry, NotItem, NotMember, NotReview {
 		//Tests BadEntry
 		if(Opinion.testBadEntry(pseudo, password, type, titre, login, note)) throw new BadEntry("Paramètres incorrects");
