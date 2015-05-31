@@ -95,5 +95,15 @@ public class Review {
 		}
 	}
 	
+	public float getMoyenneOpinions(){
+		if(opinions.size()==0) return 5.0f;
+		float result = 0.0f;
+		for(Opinion o : opinions){
+			result = result + o.getNote();
+		}
+		result = result / opinions.size();
+		return result;
+	}
+	
 
 }

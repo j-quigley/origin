@@ -41,7 +41,7 @@ public class Member {
 	}
 	
 	public boolean isPassword(String pwd){
-		return password == pwd;
+		return password.equalsIgnoreCase(pwd);
 	}
 
 	public String toString(){
@@ -92,7 +92,7 @@ public class Member {
 		public void updateKarma(){
 			float moy = 0;
 			for(Review r : reviews){
-				moy = moy + r.getNote();
+				moy = moy + r.getMoyenneOpinions();
 			}
 			moy = moy / reviews.size();
 			karma = moy / 5;

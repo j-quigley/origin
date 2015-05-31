@@ -222,6 +222,7 @@ public class SocialNetwork {
 			//on teste si le membre existe
 			if (membreTest.getPseudo().trim().toLowerCase().equals(pseudo.trim().toLowerCase())) {
 				m = membreTest;
+				break;
 			}
 		}
 		//test si le membre est prŽsent dans la liste
@@ -239,6 +240,7 @@ public class SocialNetwork {
 			for(Member membreTest : members ) {
 				if (membreTest.getPseudo().trim().toLowerCase().equals(pseudo.trim().toLowerCase())) {
 					author = membreTest;
+					break;
 				}
 			}
 			ItemBook livre = new ItemBook(author, titre, auteur, genre, nbPages);
@@ -267,13 +269,15 @@ public class SocialNetwork {
 			if(i instanceof ItemFilm){
 				if(((ItemFilm) i).getTitre().trim().toLowerCase().equals(nom.trim().toLowerCase())){
 					note = i.getMoyenne();
-						result.add("Film trouvŽ : Titre : "+((ItemFilm) i).getTitre()+" genre : "+((ItemFilm) i).getGenre()+" note : "+note);
+					result.add("Film trouvŽ : Titre : "+((ItemFilm) i).getTitre()+" genre : "+((ItemFilm) i).getGenre()+" note : "+note);
+					break;
 				}
 			}
 			if(i instanceof ItemBook){
 				if(((ItemBook) i).getTitre().trim().toLowerCase().equals(nom.trim().toLowerCase())){
 					note = i.getMoyenne();
-						result.add("Livre trouvŽ : Titre : "+((ItemBook) i).getTitre()+" genre : "+((ItemBook) i).getGenre()+"note : "+note);
+					result.add("Livre trouvŽ : Titre : "+((ItemBook) i).getTitre()+" genre : "+((ItemBook) i).getGenre()+"note : "+note);
+					break;
 				}
 			}
 		}
@@ -315,6 +319,7 @@ public class SocialNetwork {
 			//on teste si le membre existe
 			if (membreTest.getPseudo().trim().toLowerCase().equals(pseudo.trim().toLowerCase())) {
 				m = membreTest;
+				break;
 			}
 		}
 		//test si le membre est prŽsent dans la liste
@@ -326,6 +331,7 @@ public class SocialNetwork {
 			if(i instanceof ItemFilm){
 				if(((ItemFilm) i).getTitre().trim().toLowerCase().equals(titre.trim().toLowerCase())){
 					j = i;
+					break;
 				}
 			}
 		}
@@ -504,6 +510,7 @@ public class SocialNetwork {
 			//on teste si le membre existe
 			if (membreTest.getPseudo().trim().toLowerCase().equals(pseudo.trim().toLowerCase())) {
 				m = membreTest;
+				break;
 			}
 		}
 		//test si le membre est prŽsent dans la liste
@@ -516,6 +523,7 @@ public class SocialNetwork {
 				if(i instanceof ItemBook){
 					if(((ItemBook) i).getTitre().trim().toLowerCase().equals(titre.trim().toLowerCase())){
 						j = i;
+						break;
 					}
 				}
 			}
@@ -525,6 +533,7 @@ public class SocialNetwork {
 				if(i instanceof ItemFilm){
 					if(((ItemFilm) i).getTitre().trim().toLowerCase().equals(titre.trim().toLowerCase())){
 						j = i;
+						break;
 					}
 				}
 			}
@@ -537,7 +546,15 @@ public class SocialNetwork {
 		//Ajout de l'avis dans la liste d'opinions
 		r.addOpinion(m, note);
 		//Mise � jour du karma du membre
-		m.updateKarma();
+		Member m1 = null;
+		for(Member membreTest : members ) {
+			//on teste si le membre existe
+			if (membreTest.getPseudo().trim().toLowerCase().equals(login.trim().toLowerCase())) {
+				m1 = membreTest;
+				break;
+			}
+		}
+		m1.updateKarma();
 		//Mise � jour de la note des items not�s par le membre
 		for(Item i : items){
 			if(i.isReview(login))

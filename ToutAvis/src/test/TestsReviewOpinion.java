@@ -8,25 +8,20 @@ import exception.NotMember;
 import exception.NotReview;
 
 public class TestsReviewOpinion {
-
-	//Classe statique utilis�e pour les tests sur la gestion des notes
 	
-	static class Moyenne {
-		public float value;
-	}
 
-	public static int reviewOpinionBadEntryTest(SocialNetwork sn, Moyenne moyenne, String pseudo, String  pwd, String type, String titre, String login, float note, String idTest, String messErreur){
+	public static int reviewOpinionBadEntryTest(SocialNetwork sn, float moyenne, String pseudo, String  pwd, String type, String titre, String login, float note, String idTest, String messErreur){
 		// vï¿½rifie que l'ajout d'une opinion est refusï¿½e (levï¿½e de l'exception BadEntry et pas de modification de sn)
 		// ne fait rien si c'est le cas
 		// sinon, affiche le message d'erreur passï¿½ en paramï¿½tre
-		float moy = moyenne.value;
+		float moy = moyenne;
 		try{
 			moy = sn.reviewOpinion(pseudo, pwd, type, titre, login, note);
 			System.out.println ("Test " + idTest + " : " + messErreur);
 			return 1;
 		}
 		catch (BadEntry e) {
-			if (moyenne.value != moy) {
+			if (moyenne != moy) {
 				System.out.println("Test " + idTest + " : l'exception BadEntry a bien Ì©tÌ© levÌ©e mais la moyenne a Ì©tÌ© modifiÌ©");
 				return 1;
 			}
@@ -39,13 +34,13 @@ public class TestsReviewOpinion {
 		}
 	}
 
-	public static int reviewOpinionOKTest(SocialNetwork sn, Moyenne moyenne, String pseudo, String pwd,String type, String titre, String login, float note, String idTest){
-		float moy = moyenne.value;	
+	public static int reviewOpinionOKTest(SocialNetwork sn, float moyenne, String pseudo, String pwd,String type, String titre, String login, float note, String idTest){
+		float moy = moyenne;	
 		try{
 			moy = sn.reviewOpinion(pseudo, pwd, type, titre, login, note);
-			if (moyenne.value != moy)
+			if (moyenne == moy)
 				return 0;
-			System.out.println("Test " + idTest + " : la moyenne n'a pas �t� modifi�e apr�s l'ajout d'une opinion correcte");
+			System.out.println("Test " + idTest + " : la moyenne est incorrecte apr�s l'ajout d'une opinion correcte");
 			return 1;
 		}
 		catch (Exception e) {
@@ -55,15 +50,15 @@ public class TestsReviewOpinion {
 		}
 	}
 
-	public static int reviewOpinionNotMemberTest(SocialNetwork sn, Moyenne moyenne, String pseudo, String pwd, String type, String titre, String login, float note, String idTest, String messErreur){
-		float moy = moyenne.value;	
+	public static int reviewOpinionNotMemberTest(SocialNetwork sn, float moyenne, String pseudo, String pwd, String type, String titre, String login, float note, String idTest, String messErreur){
+		float moy = moyenne;	
 		try{
 			moy = sn.reviewOpinion(pseudo, pwd, type, titre, login, note);
 			System.out.println ("Test " + idTest + " : " + messErreur);
 			return 1;
 		}
 		catch(NotMember e){
-			if (moyenne.value != moy) {
+			if (moyenne != moy) {
 				System.out.println("Test " + idTest + " : l'exception NotMember a bien Ì©tÌ© levÌ©e mais la moyenne a Ì©tÌ© modifiÌ©");
 				return 1;
 			}
@@ -77,15 +72,15 @@ public class TestsReviewOpinion {
 	}
 
 
-	public static int reviewOpinionNotItemTest(SocialNetwork sn, Moyenne moyenne,String pseudo, String pwd, String type, String titre,String login, float note, String idTest, String messErreur){
-		float moy = moyenne.value;
+	public static int reviewOpinionNotItemTest(SocialNetwork sn, float moyenne,String pseudo, String pwd, String type, String titre,String login, float note, String idTest, String messErreur){
+		float moy = moyenne;
 		try {
 			moy = sn.reviewOpinion(pseudo, pwd, type, titre, login, note);
 			System.out.println ("Test " + idTest + " : " + messErreur);
 			return 1;
 		}
 		catch (NotItem e) {
-			if (moyenne.value != moy) {
+			if (moyenne != moy) {
 				System.out.println("Test " + idTest + " : l'exception NotItem a bien Ì©tÌ© levÌ©e mais la moyenne a Ì©tÌ© modifiÌ©");
 				return 1;
 			}
@@ -98,15 +93,15 @@ public class TestsReviewOpinion {
 		}
 	}
 
-	public static int reviewOpinionNotReviewTest(SocialNetwork sn, Moyenne moyenne,String pseudo, String pwd, String type, String titre,String login, float note, String idTest, String messErreur){
-		float moy = moyenne.value;
+	public static int reviewOpinionNotReviewTest(SocialNetwork sn, float moyenne,String pseudo, String pwd, String type, String titre,String login, float note, String idTest, String messErreur){
+		float moy = moyenne;
 		try {
 			sn.reviewOpinion(pseudo, pwd, type, titre, login, note);
 			System.out.println ("Test " + idTest + " : " + messErreur);
 			return 1;
 		}
 		catch (NotReview e) {
-			if (moyenne.value != moy) {
+			if (moyenne != moy) {
 				System.out.println("Test " + idTest + " : l'exception NotReview a bien Ì©tÌ© levÌ©e mais la moyenne a Ì©tÌ© modifiÌ©");
 				return 1;
 			}
@@ -168,14 +163,13 @@ public class TestsReviewOpinion {
 			System.out.println("Exception inattendue levŽe lors de l'utilisation de reviewItem");
 		}
 
-		//Cr�ation d'objets moyenne pour tester la bonne gestion des notes
+		//Cr�ation de moyennes et de karmas pour tester la bonne gestion des notes
 		
-		Moyenne moyenneBookLaBiere = new Moyenne();
-		moyenneBookLaBiere.value = (4.5f + 1.0f) / 2.0f;
-		Moyenne moyenneBookDirac = new Moyenne();
-		moyenneBookDirac.value = (2.0f+4.8f) / 2.0f;
-		Moyenne moyenneFilmLaBiere = new Moyenne();
-		moyenneFilmLaBiere.value = (3.5f+4.0f)/2.0f;
+		float moyenneBookLaBiere =  (4.5f + 1.0f) / 2.0f;
+		float moyenneBookDirac = (2.0f+4.8f) / 2.0f;
+		float moyenneFilmLaBiere = (3.5f+4.0f)/2.0f;
+		float karmaNico = 1.0f;
+		float karmaJacques = 1.0f;
 
 				
 		// <=> fiche numÃ©ro 11
@@ -209,19 +203,24 @@ public class TestsReviewOpinion {
 		// ajout de 5 opinions avec entrÃ©es "correctes"
 
 		nbTests++;
-		moyenneBookLaBiere.value = (4.5f + 1.0f*0.2f)/1.2f;
+		karmaNico = ((1.0f+5.0f+5.0f)/3.0f)/5.0f;
+		moyenneBookLaBiere = (4.5f*karmaJacques + 1.0f*karmaNico)/(karmaJacques+karmaNico);
 		nbErreurs += reviewOpinionOKTest (sn, moyenneBookLaBiere, "jacques", "aaaa","book","La biere", "nico",1.0f,"12.1");
 		nbTests++;
-		moyenneBookLaBiere.value = (4.5f*0.4f + 1.0f*0.2f)/0.6f;
+		karmaJacques = ((2.0f+5.0f+5.0f)/3.0f)/5.0f;
+		moyenneBookLaBiere = (4.5f*karmaJacques + 1.0f*karmaNico)/(karmaJacques+karmaNico);
 		nbErreurs += reviewOpinionOKTest (sn, moyenneBookLaBiere, "nico", "bbbb","book","  La BIEre","jacques",2.0f,"12.2");
 		nbTests++;
-		moyenneBookLaBiere.value = (4.5f*(0.4f+1.4f)/2.0f + 1.0f*0.2f)/1.1f;
+		karmaJacques = ((4.5f+5.0f+5.0f)/3.0f)/5.0f;
+		moyenneBookLaBiere = (4.5f*karmaJacques + 1.0f*karmaNico)/(karmaJacques+karmaNico);
 		nbErreurs += reviewOpinionOKTest (sn, moyenneBookLaBiere, "jacques", "aaaa","book","la biere","jacques",7.0f,"12.3");
 		nbTests++;
-		moyenneBookDirac.value = (2.0f*0.5f+4.8f) / 1.5f;
+		karmaJacques = ((4.5f+2.5f+5.0f)/3.0f)/5.0f;
+		moyenneBookDirac = (2.0f*karmaJacques+4.8f*karmaNico) / (karmaJacques+karmaNico);
 		nbErreurs += reviewOpinionOKTest (sn, moyenneBookDirac, "nico", "bbbb","book","Dirac en 0","jacques",2.5f,"12.4");
 		nbTests++;
-		moyenneFilmLaBiere.value = (3.5f*2.0f+4.0f)/3.0f;
+		karmaNico = ((1.0f+10.0f+5.0f)/3.0f)/5.0f;
+		moyenneFilmLaBiere = (3.5f*karmaNico+4.0f*karmaJacques)/(karmaJacques+karmaNico);
 		nbErreurs += reviewOpinionOKTest (sn, moyenneFilmLaBiere, "jacques", "aaaa","film","La biere","nico",10.0f,"12.5");
 
 		// tentative d'ajout d'opinion avec parametre couple login/password incohÃ©rent 
